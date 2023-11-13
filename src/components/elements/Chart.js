@@ -4,7 +4,7 @@ import { Chart as ChartJS, BarElement, LineElement, ArcElement, CategoryScale, L
 ChartJS.register(BarElement, LineElement, ArcElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
 const Chart = ({ type, labels, title, value, color }) => {
-    let colorRandom = ["#FFC0CB","#AED6F1","#98FB98","#FFD700","#B19CD9","#D3D3D3"]
+    let colorRandom = ["#FFC0CB","#AED6F1","#98FB98","#FFD700","#B19CD9","#D3D3D3", "#E6E6FA"]
     const data = {
         labels: labels,
         datasets: [
@@ -32,7 +32,6 @@ const Chart = ({ type, labels, title, value, color }) => {
     };
     return (
         <>
-            <h1>Ini adalah Chart</h1>
             {type === "Line" && <Line data={data} options={options}></Line>}
             {type === "Bar" && <Bar data={data} options={options}></Bar>}
             {type === "Doughnut" && <Doughnut data={data} options={options}></Doughnut>}
