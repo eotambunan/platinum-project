@@ -3,27 +3,23 @@ import Button from "./Button";
 
 const Table = ({ data }) => {
     const [header, setHeader] = useState([]);
-    const [dataTable, setDataTable] = useState([]);
+    const [dataTable, setDataTable] = useState(data);
     useEffect(() => {
-        const fetchData = ()=>{
+        const fetchData = () => {
             if (data && data.length != 0) {
                 const keys = Object.keys(data[0]);
-                setHeader([...keys,"Action"]);
-                const values = data.map((item) => Object.values(item)
-                );
-                setDataTable(values);
+                setHeader([...keys, "Action"]);
             }
-        }
-        fetchData()
+        };
+        fetchData();
     }, []);
 
-    useEffect(()=>{console.log(dataTable)})
-    const handleClickEdit = (id)=>{
-        console.log(`silahkan update data dengan id ${id}`)
-    }
-    const handleClickDelete = (id)=>{
-        console.log(`data dengan id : ${id} berhasil di delete`)
-    }
+    const handleClickEdit = (id) => {
+        console.log(`silahkan update data dengan id ${id}`);
+    };
+    const handleClickDelete = (id) => {
+        console.log(`data dengan id : ${id} berhasil di delete`);
+    };
     return (
         <>
             <table className="table">
@@ -43,12 +39,17 @@ const Table = ({ data }) => {
                         return (
                             <>
                                 <tr key={index}>
-                                    {items.map((item,index)=>{
-                                        return (
-                                            <td key={index}>{item}</td>
-                                            )
-                                        })}
-                                        <td><Button type={"Api"} onClick={()=>handleClickEdit(index)}>Edit</Button><Button type={"Api"} onClick={()=>handleClickDelete(index)} >Delete</Button></td>
+                                    {Object.values(items).map((item,index)=>{
+                                        return <td key={index}>{item}</td>;
+                                    })}
+                                    <td>
+                                        <Button type={"Api"} onClick={() => handleClickEdit(items.id)}>
+                                            Edit
+                                        </Button>
+                                        <Button type={"Api"} onClick={() => handleClickDelete(items.id)}>
+                                            Delete
+                                        </Button>
+                                    </td>
                                 </tr>
                             </>
                         );

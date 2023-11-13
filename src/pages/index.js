@@ -7,7 +7,8 @@ import History from "@/components/fragments/History";
 export default function Home() {
       const dataTable = [
         {id:1,name:"Evander",NIK : "001"},
-        {id:2,name:"Oktapian",NIK : "002"}
+        {id:2,name:"Oktapian",NIK : "002"},
+        {id:3,name:"Tambunan",NIK : "003"}
       ]
     return (
         <>
