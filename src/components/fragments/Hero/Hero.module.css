@@ -1,0 +1,26 @@
+/* HeroSection.module.css */
+.hero {
+    padding: 200px 0;
+    text-align: center;
+    background-size: 120%;
+    background-image:url("https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") ;
+    background-color: #299b63;
+    color: #ecf0f1;
+    background-blend-mode: multiply;
+    width: 100%;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  .subtitle {
+    font-size: 1.2em;
+  }
+  
