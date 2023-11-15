@@ -1,9 +1,15 @@
-import Button from "@/components/elements/Button";
-import Chart from "@/components/elements/Chart";
+import HomePage from "@/pages/homepage/HomePage";
+import Navbar from "@/components/fragments/Navbar/Navbar";
+import Head from "next/head";
 
+// import Button from "@/components/elements/Button";
+// import Chart from "@/components/elements/Chart";
 // import Table from "@/components/elements/Table";
 // import Graphic from "@/components/fragments/Graphic";
 // import History from "@/components/fragments/History";
+
+
+// import Sidebar from "@/components/layouts/Sidebar";
 
 // export default function Home() {
 //       const dataTable = [
@@ -26,14 +32,12 @@ import Chart from "@/components/elements/Chart";
 //             </div>
 //         </>
 //     );
-import Navbar from "@/components/fragments/Navbar/Navbar";
-import HomePage from "@/pages/homepage/HomePage";
-import Head from "next/head";
+
 
 export default function Home() {
-  return (
-    <>
-      <HomePage />
-    </>
-  );
+    return (
+        <>
+        <HomePage/>
+        </>
+    );
 }
