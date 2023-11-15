@@ -61,13 +61,13 @@ const Sidebar = () => {
           </div>
         </div>
         {/* section for main content */}
-        <div className={styles.pageContent}>
+        {/* <div className={styles.pageContent}>
           <WalletSummary />
           <div className={styles.pageContentChild}>
             <IncomeForm />
             <ExpenseForm />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
