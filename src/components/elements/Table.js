@@ -37,21 +37,19 @@ const Table = ({ data }) => {
                 <tbody>
                     {dataTable.map((items, index) => {
                         return (
-                            <>
-                                <tr key={index}>
-                                    {Object.values(items).map((item,index)=>{
-                                        return <td key={index}>{item}</td>;
-                                    })}
-                                    <td>
-                                        <Button type={"Api"} onClick={() => handleClickEdit(items.id)}>
-                                            Edit
-                                        </Button>
-                                        <Button type={"Api"} onClick={() => handleClickDelete(items.id)}>
-                                            Delete
-                                        </Button>
-                                    </td>
-                                </tr>
-                            </>
+                            <tr key={index}>
+                                {Object.values(items).map((item, index) => {
+                                    return <td key={index}>{item}</td>;
+                                })}
+                                <td>
+                                    <Button type={"Api"} onClick={() => handleClickEdit(items.id)}>
+                                        Edit
+                                    </Button>
+                                    <Button type={"Api"} onClick={() => handleClickDelete(items.id)}>
+                                        Delete
+                                    </Button>
+                                </td>
+                            </tr>
                         );
                     })}
                 </tbody>
