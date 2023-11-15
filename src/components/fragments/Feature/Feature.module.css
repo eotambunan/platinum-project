@@ -1,0 +1,25 @@
+.featureItem {
+    display: flex;
+    align-items: flex-start;
+    margin: 30px;
+}
+
+.featureImage {
+    width: 400px;
+    height: 300px;
+    margin-right: 20px;
+    border-radius: 2rem;
+    border-width: 9px;
+    border-style: groove;
+    border-color: rgb(24, 170, 97);
+    
+}
+
+.featureTitle {
+    font-size: 2rem;
+    
+}
+
+.featureDesc {
+    font-size: 1.5rem;
+}
