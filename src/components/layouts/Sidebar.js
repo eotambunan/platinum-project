@@ -15,7 +15,6 @@ const Sidebar = () => {
   return (
     <>
       <div className={styles.container}>
-        {/* sidebar */}
         <div className={styles.sidebar}>
           <div className={styles.sidebarItem}>
             <ul>
@@ -60,14 +59,6 @@ const Sidebar = () => {
             </ul>
           </div>
         </div>
-        {/* section for main content */}
-        {/* <div className={styles.pageContent}>
-          <WalletSummary />
-          <div className={styles.pageContentChild}>
-            <IncomeForm />
-            <ExpenseForm />
-          </div>
-        </div> */}
       </div>
     </>
   );
