@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router'; // Import useRouter
 import axios from 'axios';
 
 const LoginPage = () => {
@@ -6,12 +7,22 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const router = useRouter(); // Use useRouter hook
+
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+  };
+
+  const handleLoginSuccess = (token) => {
+    // Store token in localStorage or state
+    localStorage.setItem('token', token);
+
+    // Redirect to the desired page (replace '/dashboard' with your target route)
+    router.push('/expanses'); // Use push method from useRouter
   };
 
   const handleSubmit = async (event) => {
@@ -23,10 +34,13 @@ const LoginPage = () => {
         password: password,
       });
 
-      // Handle successful login (e.g., store token in state or localStorage)
+      // Handle successful login
       console.log('Login successful:', response.data);
 
-      // Reset form fields
+      // Call the success handler with the token
+      handleLoginSuccess(response.data.token);
+
+      // Reset form fields and error
       setEmail('');
       setPassword('');
       setError('');
