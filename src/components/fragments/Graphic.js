@@ -3,11 +3,11 @@ import Header from "@/components/elements/Header";
 
 
 const Graphic = (props)=>{
-    const { type, labels, title, value, color,children } = props
+    const { type, datas, title, color,children } = props
     return (
         <>
         <Header>{children}</Header>
-        <Chart type={type} labels={labels} title={title} value={value} color={color}/>
+        <Chart type={type} datas={datas} title={title} color={color}/>
         </>
     )
 }
