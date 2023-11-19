@@ -25,8 +25,8 @@ const Chart = ({ type, labels, title, value, color }) => {
         },
         scales: {
             y: {
-                min: (value.reduce((a,b)=>Math.min(a,b)))*0.9,
-                max: Math.ceil(value.reduce((a,b)=>Math.max(a,b))),
+                min: Array.isArray(value) && value.length > 0 ? Math.min(...value) * 0.9 : 0,
+                max: Array.isArray(value) && value.length > 0 ? Math.ceil(Math.max(...value)) : 1,
             },
         },
     };
