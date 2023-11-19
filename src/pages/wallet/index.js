@@ -4,6 +4,7 @@ import { getSaldoMonthly, getWalletSaldo } from "@/rest_API/wallets_api";
 import WalletSummaryContent from "@/components/elements/WalletSummaryContent";
 import { AiFillBank } from "react-icons/ai";
 import Graphic from "@/components/fragments/Graphic";
+import ModalWallet from "@/components/elements/ModalWallet"
 const Wallet = () => {
   const [wallets, setWallets] = useState([]);
   const [monthlySaldoData, setMonthlySaldoData] = useState([]);
@@ -60,7 +61,9 @@ const Wallet = () => {
         )}
         <Col>
           <div>
+            
             <h1>Saldo Monthly</h1>
+            <ModalWallet></ModalWallet>
             <div style={{ width: '80%', height: '80%' }}>
                <Graphic
                 type={"Line"}
@@ -70,7 +73,8 @@ const Wallet = () => {
                 color={"green"}
                 width="80%"
                 height="80%"
-              ></Graphic>
+              />
+              
             </div>
           </div>
         </Col>

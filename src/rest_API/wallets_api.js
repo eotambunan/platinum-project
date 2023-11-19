@@ -23,6 +23,20 @@ export const getSaldoMonthly = async () =>{
         );
         return response.data.data;
     } catch (error) {
-        
+        console.error("Error fetching data:", error);
+    }
+}
+
+export const createWallet = async(user_id,category,description) => {
+    try {
+        const response = await axios.post(
+            "http://localhost:3000/api/wallet/v1/add",
+            {
+                user_id  , category, description
+            }
+        )
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
     }
 }
