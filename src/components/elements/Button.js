@@ -1,6 +1,3 @@
-import { useState } from "react";
-
-
 const Button = ({type,target,onClick,children}) => {
 
     return (

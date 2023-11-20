@@ -1,24 +1,39 @@
+import { deleteExpanse } from "@/rest_API/expanses_api";
 import { useEffect, useState } from "react";
-import Button from "./Button";
+import { Button } from "react-bootstrap";
 
-const Table = ({ data }) => {
+import TesExpanse from "./tesExpanse";
+
+
+const Table = ({datas,onDataDeleted}) => {
     const [header, setHeader] = useState([]);
-    const [dataTable, setDataTable] = useState(data);
-    useEffect(() => {
-        const fetchData = () => {
-            if (data && data.length != 0) {
-                const keys = Object.keys(data[0]);
-                setHeader([...keys, "Action"]);
-            }
-        };
-        fetchData();
-    }, []);
+    const [dataTable, setDataTable] = useState([]);
+    const [editData,setEditData] = useState([])
 
-    const handleClickEdit = (id) => {
-        console.log(`silahkan update data dengan id ${id}`);
-    };
-    const handleClickDelete = (id) => {
-        console.log(`data dengan id : ${id} berhasil di delete`);
+
+    useEffect(()=>{
+        if(datas&&datas.length!=0){
+            const keys = Object.keys(datas[0]);
+            setHeader([...keys, "Action"]);
+            setDataTable(datas)
+        }
+
+    },[datas])
+
+
+    useEffect(()=>{
+        const getEditData = (id)=>{
+            const editDataWithId=data.filter(item=>item.id===id)
+            setEditData(editDataWithId)
+        }
+    },[])
+    const handleClickDelete = async (id) => {
+        try {
+            await deleteExpanse(id)
+            onDataDeleted()
+        } catch (error) {
+            console.log(error);
+        }
     };
     return (
         <>
@@ -42,10 +57,8 @@ const Table = ({ data }) => {
                                     return <td key={index}>{item}</td>;
                                 })}
                                 <td>
-                                    <Button type={"Api"} onClick={() => handleClickEdit(items.id)}>
-                                        Edit
-                                    </Button>
-                                    <Button type={"Api"} onClick={() => handleClickDelete(items.id)}>
+                                    <TesExpanse id={items.id}>Edit</TesExpanse>
+                                    <Button onClick={() => handleClickDelete(items.id)}>
                                         Delete
                                     </Button>
                                 </td>

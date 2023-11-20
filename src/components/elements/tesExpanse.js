@@ -1,7 +1,10 @@
+import { addExpanse } from "@/rest_API/expanses_api";
+import { fetchData } from "next-auth/client/_utils";
+
 import { useState } from "react";
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 
-const ExpenseForm = () => {
+const TesExpanse = ({children,id, onDataAdded}) => {
   const [show, setShow] = useState(false);
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
@@ -9,14 +12,25 @@ const ExpenseForm = () => {
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
 
+
+  const handleClick = async (event)=>{
+    event.preventDefault()
+    const data = {wallet_id:wallet,expanses_id:category,amount,date_transaction: date,description}
+    const response = await addExpanse(data)
+    onDataAdded()
+    handleClose()
+  }
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true)
+  }
   return (
     <Row>
       <Col>
         {/* Button for trigger Modal */}
+        {}
         <Button variant="primary" onClick={handleShow}>
-          Add Expense{" "}
+          {children}
         </Button>
         {/* Add Expense Modal */}
         <Modal show={show} onHide={handleClose}>
@@ -37,8 +51,8 @@ const ExpenseForm = () => {
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
-                  <option value="4">Three</option>
-                  <option value="5">Three</option>
+                  <option value="4">Four</option>
+                  <option value="5">Five</option>
                 </Form.Select>
               </Form.Group>
               <Form.Group className="mb-2">
@@ -87,7 +101,7 @@ const ExpenseForm = () => {
                 />
               </Form.Group>
               <div className="d-flex justify-content-end flex-column">
-                <Button variant="primary" className="" type="submit">
+                <Button variant="primary" className="" type="submit" onClick={handleClick}>
                   Add Expense
                 </Button>
               </div>
@@ -104,4 +118,4 @@ const ExpenseForm = () => {
   );
 };
 
-export default ExpenseForm;
+export default TesExpanse;

@@ -4,23 +4,25 @@ import { useEffect, useState } from "react";
 
 ChartJS.register(BarElement, LineElement, ArcElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
-const Chart = ({ type, datas, title, color }) => {
+const Chart = ({ type, title, color, datas }) => {
     const [category, setCategory] = useState([]);
     const [value, setValue] = useState([]);
 
     useEffect(() => {
         const categoryTotalValue = datas.reduce((accumulator, currentItem) => {
-          const { category, value } = currentItem;
-          accumulator[category] = (accumulator[category] || 0) + value;
-          return accumulator;
+            const { category, value } = currentItem;
+            accumulator[category] = (accumulator[category] || 0) + value;
+            return accumulator;
         }, {});
     
+        // Extract unique categories, values, and update state
         const uniqueCategories = Object.keys(categoryTotalValue);
         const uniqueValues = Object.values(categoryTotalValue);
-    
         setCategory(uniqueCategories);
         setValue(uniqueValues);
-      }, []);
+    }, [datas]);
+    
+
     let colorRandom = ["#FFC0CB", "#AED6F1", "#98FB98", "#FFD700", "#B19CD9", "#D3D3D3", "#E6E6FA"];
     const data = {
         labels: category,
@@ -42,7 +44,7 @@ const Chart = ({ type, datas, title, color }) => {
         },
         scales: {
             y: {
-                min: (Math.min(...value)*0.9),
+                min: Math.min(...value) * 0.9,
                 max: Math.max(...value),
             },
         },

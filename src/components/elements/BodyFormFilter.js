@@ -1,13 +1,15 @@
 import { useState } from "react";
 import Button from "./Button";
 import Graphic from "../fragments/Graphic";
+import Chart from "./Chart";
 
 const { Row, Col, Form } = require("react-bootstrap");
 
-const BodyFormFilter = () => {
+const BodyFormFilter = ({ datas }) => {
     const [selectedMonth, setSelectedMonth] = useState("");
     const [selectedYear, setSelectedYear] = useState("");
-    const [chartFilter, setChartFilter] = useState(null);
+    const [chartFilterData, setChartFilterData] = useState(null);
+
     const handleSelectedMonthChange = (event) => {
         setSelectedMonth(event.target.value);
     };
@@ -15,16 +17,11 @@ const BodyFormFilter = () => {
         setSelectedYear(event.target.value);
     };
     const handleClick = () => {
-        setChartFilter(`Bulan : ${selectedMonth} Tahun:${selectedYear}`);
-        console.log(chartFilter);
+        // setChartFilter(`Bulan : ${selectedMonth} Tahun:${selectedYear}`);
+        const filteredData = datas.filter((item) => item.month === selectedMonth && item.year === selectedYear);
+        setChartFilterData(filteredData);
+        console.log(filteredData)
     };
-    const datas = [
-        {category : "komik",value : 10000},
-        {category : "novel",value : 10000},
-        {category : "children",value : 10000},
-        {category : "komik",value : 15000},
-        {category : "komik",value : 20000},
-    ]
     return (
         <Row>
             <Col>
@@ -33,9 +30,18 @@ const BodyFormFilter = () => {
                         <option value="" disabled>
                             Month
                         </option>
-                        <option value="January">January</option>
-                        <option value="February">February</option>
-                        <option value="Maret">Maret</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">Maret</option>
+                        <option value="4">April</option>
+                        <option value="5">Mei</option>
+                        <option value="6">Juni</option>
+                        <option value="7">Juli</option>
+                        <option value="8">Agustus</option>
+                        <option value="9">September</option>
+                        <option value="10">Oktober</option>
+                        <option value="11">November</option>
+                        <option value="12">Desember</option>
                     </Form.Select>
                 </div>
             </Col>
@@ -49,13 +55,14 @@ const BodyFormFilter = () => {
                     <option value="2023">2023</option>
                 </Form.Select>
             </Col>
-            <Button type={"Api"} onClick={handleClick}>
-                Apply Filter
-            </Button>
+            <button onClick={handleClick}>klik</button>
             <div className="mt-3">
-                {!chartFilter&&<h1>data tidak ada</h1>}
-                {chartFilter&&<Graphic type={"Pie"} datas={datas} title={"Expenses"} color={"red"}>Expenses by category monthly</Graphic>            
-}
+                {!chartFilterData||chartFilterData.length==0 && <h1>data tidak ada</h1>}
+                {chartFilterData && (
+                    <Chart type={"Pie"} datas={chartFilterData} title={"Expenses"} color={"red"}>
+                        Expenses by category monthly
+                    </Chart>
+                )}
             </div>
         </Row>
     );

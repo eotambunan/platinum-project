@@ -1,17 +1,45 @@
 import axios from "axios";
 
-const url = "https://moneytracker.cyclic.app"
+// const api = axios.create({
+//     baseURL:process.env.NEXT_PUBLIC_API_BASE_URL
+// })
 
-export const getTotalMonthlyExpenses = async ()=>{
+const getExpanseTotalMonthly = async () => {
     try {
-        const accessToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('access-token=')).split('=')[1];
-        const response = await axios.get(`${url}/api/expanse/v1/totalmonthly`,{
-            headers: {
-                'Cookie': `access-token=${accessToken}`
-            }
-        })
-        console.log(response);      
+        const response = await axios.get("http://localhost:3001/api/expanse/v1/getall", {
+            params: {
+                user_id: 1,
+            },
+        });
+        return response.data.data;
     } catch (error) {
-        console.error('Error fetching total monthly expenses:', error);
+        throw error;
+    }
+};
+
+const addExpanse = async ( payload ) => {
+    try {
+        const response = await axios.post("http://localhost:3001/api/expanse/v1/add", {
+            user_id: 1,
+            wallet_id: payload.wallet_id,
+            expanses_id: payload.expanses_id,
+            amount: payload.amount,
+            date_transaction: new Date(payload.date_transaction).toISOString(),
+            description: payload.description,
+        });
+        return response.data.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const deleteExpanse=async (payload)=>{
+    try {
+        const response = await axios.delete(`http://localhost:3001/api/expanse/v1/delete/${payload}`)    
+        return response.data.data    
+    } catch (error) {
+        
     }
 }
+
+export { getExpanseTotalMonthly, addExpanse, deleteExpanse };
