@@ -1,17 +1,17 @@
 import BodyFormFilter from "@/components/elements/BodyFormFilter";
-import Graphic from "@/components/fragments/Graphic";
-import History from "@/components/fragments/History";
 import { Col, Row } from "react-bootstrap";
-import TesExpanse from "@/components/elements/tesExpanse";
+import TesExpanse from "@/components/elements/AddExpanse";
 import { useEffect, useState } from "react";
 import { getExpanseTotalMonthly } from "@/rest_API/expanses_api";
 import Chart from "@/components/elements/Chart";
 import Table from "@/components/elements/Table";
+import { useRouter } from "next/router";
 
 const expanses = () => {
     const [chartData, setChartData] = useState([]);
     const [tableData, setTableData] = useState([]);
-    const [filterData, setFilterData] = useState([])
+    const [filterData, setFilterData] = useState([]);
+
     useEffect(() => {
         fetchData();
     }, []);
@@ -28,43 +28,41 @@ const expanses = () => {
             setTableData(filteredDatasForTable);
 
             // data for filter
-            const filteredDatasForFilterFirst = response.map(({ user_id, createdAt, updatedAt, date_transaction, wallet_id, description, id, ...rest }) => ({ ...rest, date_transaction: new Date(date_transaction).toLocaleDateString()})).map(({expanses_id,amount,...rest})=>({category: expanses_id, value: amount,...rest}))
-            const newData = filteredDatasForFilterFirst.map(({date_transaction,...rest})=>{
-                const month = date_transaction.split("/")[0]
-                const year = date_transaction.split("/")[2]
-                return {...rest,month,year}
-            })
-            setFilterData(newData)
-
+            const filteredDatasForFilterFirst = response
+                .map(({ user_id, createdAt, updatedAt, date_transaction, wallet_id, description, id, ...rest }) => ({ ...rest, date_transaction: new Date(date_transaction).toLocaleDateString() }))
+                .map(({ expanses_id, amount, ...rest }) => ({ category: expanses_id, value: amount, ...rest }));
+            const newData = filteredDatasForFilterFirst.map(({ date_transaction, ...rest }) => {
+                const month = date_transaction.split("/")[0];
+                const year = date_transaction.split("/")[2];
+                return { ...rest, month, year };
+            });
+            setFilterData(newData);
         } catch (error) {
             console.error(error);
         }
     };
 
-    const handleDataEdited = () => {
-        fetchData();
-    };
-
+    const { query } = useRouter();
     return (
         <Row>
             <Col md="8">
                 <div>
                     <h1>ini adalah halaman expanses</h1>
-                    <TesExpanse onDataAdded={handleDataEdited}>Add Expanse</TesExpanse>
+                    <TesExpanse fetchData={fetchData}>Add Expanse</TesExpanse>
                     <Chart type={"Bar"} title={"Expanse"} color={"red"} datas={chartData}>
                         Expanses by category monthly
                     </Chart>
                 </div>
                 <div>
-                    <Table datas={tableData} onDataDeleted={handleDataEdited} >ini adalah table history</Table>
+                    <Table datas={tableData} fetchData={fetchData} slug={query.slug}>
+                        ini adalah table history
+                    </Table>
                 </div>
-
             </Col>
             <Col md="4" style={{ backgroundColor: "grey" }}>
-                <BodyFormFilter datas={filterData}/>
+                <BodyFormFilter datas={filterData} />
             </Col>
         </Row>
     );
 };
 export default expanses;
-

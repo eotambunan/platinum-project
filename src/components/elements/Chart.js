@@ -14,14 +14,12 @@ const Chart = ({ type, title, color, datas }) => {
             accumulator[category] = (accumulator[category] || 0) + value;
             return accumulator;
         }, {});
-    
-        // Extract unique categories, values, and update state
+
         const uniqueCategories = Object.keys(categoryTotalValue);
         const uniqueValues = Object.values(categoryTotalValue);
         setCategory(uniqueCategories);
         setValue(uniqueValues);
     }, [datas]);
-    
 
     let colorRandom = ["#FFC0CB", "#AED6F1", "#98FB98", "#FFD700", "#B19CD9", "#D3D3D3", "#E6E6FA"];
     const data = {

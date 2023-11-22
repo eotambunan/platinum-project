@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./Button";
 import Graphic from "../fragments/Graphic";
 import Chart from "./Chart";
@@ -17,11 +17,18 @@ const BodyFormFilter = ({ datas }) => {
         setSelectedYear(event.target.value);
     };
     const handleClick = () => {
-        // setChartFilter(`Bulan : ${selectedMonth} Tahun:${selectedYear}`);
+        updateData()
+    };
+    useEffect(()=>{
+        updateData()
+    },[datas])
+    
+    const updateData = ()=>{        
         const filteredData = datas.filter((item) => item.month === selectedMonth && item.year === selectedYear);
         setChartFilterData(filteredData);
-        console.log(filteredData)
-    };
+    }
+
+
     return (
         <Row>
             <Col>

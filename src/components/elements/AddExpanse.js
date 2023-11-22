@@ -4,7 +4,7 @@ import { fetchData } from "next-auth/client/_utils";
 import { useState } from "react";
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 
-const TesExpanse = ({children,id, onDataAdded}) => {
+const TesExpanse = ({children,id, fetchData}) => {
   const [show, setShow] = useState(false);
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
@@ -17,7 +17,7 @@ const TesExpanse = ({children,id, onDataAdded}) => {
     event.preventDefault()
     const data = {wallet_id:wallet,expanses_id:category,amount,date_transaction: date,description}
     const response = await addExpanse(data)
-    onDataAdded()
+    fetchData()
     handleClose()
   }
   const handleClose = () => setShow(false);
