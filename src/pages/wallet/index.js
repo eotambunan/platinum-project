@@ -20,7 +20,6 @@ const Wallet = () => {
     const fetchData = async () => {
         try {
             const walletResponse = await getWalletSaldo();
-            console.log(walletResponse);
             setWallets(walletResponse);
 
             const filteredDataForChart = walletResponse.map(({wallet_id,saldo})=>({category:wallet_id, value : saldo}))
@@ -70,7 +69,7 @@ const Wallet = () => {
                     <div>
             
             <h1>Saldo Monthly</h1>
-            <ModalWallet></ModalWallet>
+            <ModalWallet fetchData={fetchData}></ModalWallet>
             <div style={{ width: '80%', height: '80%' }}>
                <Chart
                 type={"Line"}

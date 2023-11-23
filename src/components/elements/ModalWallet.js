@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 import { createWallet } from "@/rest_API/wallets_api"; // Import your API function for creating wallets
 
-const WalletForm = ({ onWalletCreated }) => {
+const WalletForm = ({ fetchData }) => {
   const [show, setShow] = useState(false);
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
@@ -20,19 +20,15 @@ const WalletForm = ({ onWalletCreated }) => {
     e.preventDefault();
 
     try {
-      const user_id = "1";
       // Make an API request to create a new wallet
-      const newWallet = await createWallet({
-        user_id,
-        category,
-        description,
-      });
+      const payload = {category,description}
+      const newWallet = await createWallet(payload);
 
       // Optionally, you can handle the response from the server, e.g., display a success message
 
       // Trigger a callback to notify the parent component that a new wallet has been created
-      if (onWalletCreated) {
-        onWalletCreated(newWallet);
+      if (fetchData) {
+        fetchData();
       }
 
       // Close the modal after submission
