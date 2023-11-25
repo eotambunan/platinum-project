@@ -1,11 +1,11 @@
-import { addExpanse } from "@/rest_API/expanses_api";
+import { addIncome } from "@/rest_API/incomes_api";
 import { getWallet } from "@/rest_API/wallets_api";
 import { fetchData } from "next-auth/client/_utils";
 
 import { useState } from "react";
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 
-const TesExpanse = ({children,id, fetchData}) => {
+const AddIncome = ({children,id, fetchData}) => {
   const [show, setShow] = useState(false);
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
@@ -17,8 +17,8 @@ const TesExpanse = ({children,id, fetchData}) => {
 
   const handleClick = async (event)=>{
     event.preventDefault()
-    const data = {wallet_id:wallet,expanses_id:category,amount,date_transaction: date,description}
-    const response = await addExpanse(data)
+    const data = {wallet_id:wallet,income_id:category,amount,date_transaction: date,description}
+    const response = await addIncome(data)
     setWallet('');
     setCategory('');
     setAmount('');
@@ -48,7 +48,7 @@ const TesExpanse = ({children,id, fetchData}) => {
         {/* Add Expense Modal */}
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Add Expense</Modal.Title>
+            <Modal.Title>Add Income</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form className="mt-2">
@@ -61,16 +61,10 @@ const TesExpanse = ({children,id, fetchData}) => {
                   }}
                   defaultValue=""
                 >
-                  <option value="" disabled hidden >Expanse Category</option>
-                  <option value="Food & Drink">Food & Drink</option>
-                  <option value="Groceries">Groceries</option>
-                  <option value="Housing">Housing</option>
-                  <option value="Medical">Medical</option>
-                  <option value="Investing">Investing</option>
-                  <option value="Shopping">Shopping</option>
-                  <option value="Education">Education</option>
-                  <option value="Gift & Donation">Gift & Donation</option>
-                  <option value="Transport">Transport</option>
+                  <option value="" disabled hidden >Income Category</option>
+                  <option value="Salary">Salary</option>
+                  <option value="Incentive">Incentive</option>
+                  <option value="Other">Other</option>
                 </Form.Select>
               </Form.Group>
               <Form.Group className="mb-2">
@@ -120,7 +114,7 @@ const TesExpanse = ({children,id, fetchData}) => {
               </Form.Group>
               <div className="d-flex justify-content-end flex-column">
                 <Button variant="primary" className="" type="submit" onClick={handleClick}>
-                  Add Expense
+                  Add Income
                 </Button>
               </div>
             </Form>
@@ -136,4 +130,4 @@ const TesExpanse = ({children,id, fetchData}) => {
   );
 };
 
-export default TesExpanse;
+export default AddIncome;

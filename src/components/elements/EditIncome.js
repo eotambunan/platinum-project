@@ -1,13 +1,12 @@
-import { addExpanse, editExpanseApi } from "@/rest_API/expanses_api";
+import { addExpanse, editIncomeApi } from "@/rest_API/incomes_api";
 import { getWallet } from "@/rest_API/wallets_api";
-
 import { fetchData } from "next-auth/client/_utils";
 import { useRouter } from "next/router";
 
 import { useState, useEffect } from "react";
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 
-const EditExpanse = ({ children, id, datas, fetchData }) => {
+const EditIncome = ({ children, id, datas, fetchData }) => {
     const [show, setShow] = useState(false);
     const [category, setCategory] = useState("");
     const [amount, setAmount] = useState("");
@@ -17,7 +16,6 @@ const EditExpanse = ({ children, id, datas, fetchData }) => {
 
     const [currentData, setCurrentData] = useState([]);
     const [listWallet, setListWallet] = useState([]);
-
     useEffect(() => {
         if (datas.length > 0) {
             getCurrentData();
@@ -25,7 +23,7 @@ const EditExpanse = ({ children, id, datas, fetchData }) => {
     }, [datas]);
 
     useEffect(() => {
-        setCategory(currentData.expanses_id);
+        setCategory(currentData.income_id);
         setAmount(currentData.amount);
         setWallet(currentData.wallet_id);
         // if (datas.length > 0) {
@@ -52,21 +50,18 @@ const EditExpanse = ({ children, id, datas, fetchData }) => {
 
     const handleClick = async (event) => {
         event.preventDefault();
-        console.log("ok");
-        const data = { wallet_id: wallet, expanses_id: category, amount, date_transaction: date, description };
-        console.log(data);
-        console.log(id);
-        const response = await editExpanseApi(data, id);
+        const data = { wallet_id: wallet, income_id: category, amount, date_transaction: date, description };
+        const response = await editIncomeApi(data, id);
         fetchData();
         handleClose();
     };
     const handleClose = () => {
-        router.push("/expanses");
+        router.push("/income");
         setShow(false);
     };
     const router = useRouter();
     const handleShow = () => {
-        router.push(`/expanses/${id}`);
+        router.push(`/income/${id}`);
         fetchDataWallet()
         setShow(true);
     };
@@ -95,17 +90,11 @@ const EditExpanse = ({ children, id, datas, fetchData }) => {
                                     }}
                                 >
                                     <option value="" disabled hidden>
-                                        Expanse Category
+                                        Income Category
                                     </option>
-                                    <option value="Food & Drink">Food & Drink</option>
-                                    <option value="Groceries">Groceries</option>
-                                    <option value="Housing">Housing</option>
-                                    <option value="Medical">Medical</option>
-                                    <option value="Investing">Investing</option>
-                                    <option value="Shopping">Shopping</option>
-                                    <option value="Education">Education</option>
-                                    <option value="Gift & Donation">Gift & Donation</option>
-                                    <option value="Transport">Transport</option>
+                                    <option value="Salary">Salary</option>
+                                    <option value="Incentive">Incentive</option>
+                                    <option value="Other">Other</option>
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group className="mb-2">
@@ -126,6 +115,7 @@ const EditExpanse = ({ children, id, datas, fetchData }) => {
                                     onChange={(e) => {
                                         setWallet(e.target.value);
                                     }}
+                                    defaultValue=""
                                 >
                                     <option value="" disabled hidden>
                                         Select Wallet
@@ -176,4 +166,4 @@ const EditExpanse = ({ children, id, datas, fetchData }) => {
     );
 };
 
-export default EditExpanse;
+export default EditIncome;

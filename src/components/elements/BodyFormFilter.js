@@ -18,6 +18,7 @@ const BodyFormFilter = ({ datas }) => {
     };
     const handleClick = () => {
         updateData()
+        console.log(datas);
     };
     useEffect(()=>{
         updateData()
@@ -34,7 +35,7 @@ const BodyFormFilter = ({ datas }) => {
             <Col>
                 <div className="input-group mb-3">
                     <Form.Select className="form-select" id="inputGroupSelect01" value={selectedMonth} onChange={handleSelectedMonthChange}>
-                        <option value="" disabled>
+                        <option value="" disabled hidden>
                             Month
                         </option>
                         <option value="1">January</option>
@@ -54,7 +55,7 @@ const BodyFormFilter = ({ datas }) => {
             </Col>
             <Col>
                 <Form.Select className="form-select" id="inputGroupSelect01" value={selectedYear} onChange={handleSelectedYearChange}>
-                    <option value="" disabled>
+                    <option value="" disabled hidden>
                         Year
                     </option>
                     <option value="2021">2021</option>

@@ -1,11 +1,12 @@
-import { deleteExpanse } from "@/rest_API/expanses_api";
+import { deleteIncome } from "@/rest_API/incomes_api";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
 import TesExpanse from "./AddExpanse";
 import EditExpanse from "./EditExpanse";
+import EditIncome from "./EditIncome";
 
-const Table = ({ datas, fetchData, slug }) => {
+const Table = ({ datas, fetchData, slug, type }) => {
     const [header, setHeader] = useState([]);
     const [dataTable, setDataTable] = useState([]);
     const [editData, setEditData] = useState([]);
@@ -28,7 +29,7 @@ const Table = ({ datas, fetchData, slug }) => {
     };
     const handleClickDelete = async (id) => {
         try {
-            await deleteExpanse(id);
+            await deleteIncome(id);
             fetchData();
         } catch (error) {
             console.log(error);
@@ -57,9 +58,11 @@ const Table = ({ datas, fetchData, slug }) => {
                                     <td key={index}>{item}</td>
                                 ))}
                                 <td>
-                                    <EditExpanse id={items.id} datas={editData} fetchData={fetchData}>
+                                    {type=="income"?<EditIncome id={items.id} datas={editData} fetchData={fetchData}>
                                         Edit
-                                    </EditExpanse>
+                                    </EditIncome>:<EditExpanse id={items.id} datas={editData} fetchData={fetchData}>
+                                        Edit
+                                    </EditExpanse>}
                                     <Button onClick={() => handleClickDelete(items.id)}>Delete</Button>
                                 </td>
                             </tr>

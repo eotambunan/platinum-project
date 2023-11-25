@@ -4,6 +4,7 @@ import { MdOutlineSpaceDashboard, MdOutlineTrendingDown, MdOutlineTrendingUp, Md
 import WalletSummary from "../elements/WalletSummary";
 import ExpenseForm from "../elements/asdasd";
 import IncomeForm from "../elements/ModalIncomeForm";
+import Link from "next/link";
 
 const Sidebar = () => {
     return (
@@ -20,36 +21,36 @@ const Sidebar = () => {
                             </a>
                         </ul>
                         <ul>
-                            <a href="#">
+                            <Link href="/expanses">
                                 <IconContext.Provider value={{ color: "white", size: "2rem" }}>
                                     <MdOutlineTrendingDown className={styles.icons} />
                                 </IconContext.Provider>
                                 Expenses
-                            </a>
+                            </Link>
                         </ul>
                         <ul>
-                            <a href="#">
+                            <Link href="/income">
                                 <IconContext.Provider value={{ color: "white", size: "2rem" }}>
                                     <MdOutlineTrendingUp className={styles.icons} />
                                 </IconContext.Provider>
                                 Incomes
-                            </a>
+                            </Link>
                         </ul>
                         <ul>
-                            <a href="#">
+                            <Link href="/wallet">
                                 <IconContext.Provider value={{ color: "white", size: "2rem" }}>
                                     <MdWallet className={styles.icons} />
                                 </IconContext.Provider>
                                 Wallet
-                            </a>
+                            </Link>
                         </ul>
                         <ul>
-                            <a href="#">
+                            <Link href="/profile">
                                 <IconContext.Provider value={{ color: "white", size: "2rem" }}>
                                     <MdPersonOutline className={styles.icons} />
                                 </IconContext.Provider>
                                 Profile
-                            </a>
+                            </Link>
                         </ul>
                     </div>
                 </div>

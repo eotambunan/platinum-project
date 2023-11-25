@@ -1,13 +1,13 @@
 import BodyFormFilter from "@/components/elements/BodyFormFilter";
 import { Col, Row } from "react-bootstrap";
-import TesExpanse from "@/components/elements/AddExpanse";
 import { useEffect, useState } from "react";
-import { getExpanseTotalMonthly } from "@/rest_API/expanses_api";
+import { getIncomeTotalMonthly } from "@/rest_API/incomes_api";
 import Chart from "@/components/elements/Chart";
 import Table from "@/components/elements/Table";
 import { useRouter } from "next/router";
+import AddIncome from "@/components/elements/AddIncome";
 
-const expanses = () => {
+const income = () => {
     const [chartData, setChartData] = useState([]);
     const [tableData, setTableData] = useState([]);
     const [filterData, setFilterData] = useState([]);
@@ -16,14 +16,14 @@ const expanses = () => {
         fetchData();
     }, []);
     useEffect(() => {
-        console.log("ok");
     }, []);
 
     const fetchData = async () => {
         try {
-            const response = await getExpanseTotalMonthly();
+            const response = await getIncomeTotalMonthly();
+
             // data for chart
-            const filteredDatasForChart = response.map(({ id, user_id, wallet_id, ...rest }) => rest).map(({ expanses_id, amount }) => ({ category: expanses_id, value: amount }));
+            const filteredDatasForChart = response.map(({ id, user_id, wallet_id, ...rest }) => rest).map(({ income_id, amount }) => ({ category: income_id, value: amount }));
             setChartData(filteredDatasForChart);
 
             // data for table
@@ -33,7 +33,7 @@ const expanses = () => {
             // data for filter
             const filteredDatasForFilterFirst = response
                 .map(({ user_id, createdAt, updatedAt, date_transaction, wallet_id, description, id, ...rest }) => ({ ...rest, date_transaction: new Date(date_transaction).toLocaleDateString() }))
-                .map(({ expanses_id, amount, ...rest }) => ({ category: expanses_id, value: amount, ...rest }));
+                .map(({ income_id, amount, ...rest }) => ({ category: income_id, value: amount, ...rest }));
             const newData = filteredDatasForFilterFirst.map(({ date_transaction, ...rest }) => {
                 const month = date_transaction.split("/")[0];
                 const year = date_transaction.split("/")[2];
@@ -50,14 +50,14 @@ const expanses = () => {
         <Row>
             <Col md="8">
                 <div>
-                    <h1>ini adalah halaman expanses</h1>
-                    <TesExpanse fetchData={fetchData}>Add Expanse</TesExpanse>
-                    <Chart type={"Bar"} title={"Expanse"} color={"red"} datas={chartData}>
-                        Expanses by category monthly
+                    <h1>ini adalah halaman Income</h1>
+                    <AddIncome fetchData={fetchData}>Add Income</AddIncome>
+                    <Chart type={"Bar"} title={"Income"} color={"green"} datas={chartData}>
+                        Income by category monthly
                     </Chart>
                 </div>
                 <div>
-                    <Table datas={tableData} fetchData={fetchData} slug={query.slug}>
+                    <Table datas={tableData} fetchData={fetchData} slug={query.slug} type={"income"}>
                         ini adalah table history
                     </Table>
                 </div>
@@ -68,4 +68,4 @@ const expanses = () => {
         </Row>
     );
 };
-export default expanses;
+export default income;
