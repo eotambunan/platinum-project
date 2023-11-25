@@ -1,25 +1,41 @@
+import { deleteIncome } from "@/rest_API/incomes_api";
 import { useEffect, useState } from "react";
-import Button from "./Button";
+import { Button } from "react-bootstrap";
 
-const Table = ({ data }) => {
+import TesExpanse from "./AddExpanse";
+import EditExpanse from "./EditExpanse";
+import EditIncome from "./EditIncome";
+
+const Table = ({ datas, fetchData, slug, type }) => {
     const [header, setHeader] = useState([]);
-    const [dataTable, setDataTable] = useState(data);
-    useEffect(() => {
-        const fetchData = () => {
-            if (data && data.length != 0) {
-                const keys = Object.keys(data[0]);
-                setHeader([...keys, "Action"]);
-            }
-        };
-        fetchData();
-    }, []);
+    const [dataTable, setDataTable] = useState([]);
+    const [editData, setEditData] = useState([]);
 
-    const handleClickEdit = (id) => {
-        console.log(`silahkan update data dengan id ${id}`);
+    useEffect(() => {
+        if (datas && datas.length != 0) {
+            const keys = Object.keys(datas[0]);
+            setHeader([...keys, "Action"]);
+            setDataTable(datas);
+        }
+    }, [datas]);
+
+    useEffect(() => {
+        getEditData();
+    }, [slug]);
+
+    const getEditData = () => {
+        const editDataWithId = datas.filter((item) => item.id == slug);
+        setEditData(editDataWithId);
     };
-    const handleClickDelete = (id) => {
-        console.log(`data dengan id : ${id} berhasil di delete`);
+    const handleClickDelete = async (id) => {
+        try {
+            await deleteIncome(id);
+            fetchData();
+        } catch (error) {
+            console.log(error);
+        }
     };
+
     return (
         <>
             <table className="table">
@@ -35,23 +51,27 @@ const Table = ({ data }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {dataTable.map((items, index) => {
-                        return (
+                    {dataTable.length > 0 ? (
+                        dataTable.map((items, index) => (
                             <tr key={index}>
-                                {Object.values(items).map((item, index) => {
-                                    return <td key={index}>{item}</td>;
-                                })}
+                                {Object.values(items).map((item, index) => (
+                                    <td key={index}>{item}</td>
+                                ))}
                                 <td>
-                                    <Button type={"Api"} onClick={() => handleClickEdit(items.id)}>
+                                    {type=="income"?<EditIncome id={items.id} datas={editData} fetchData={fetchData}>
                                         Edit
-                                    </Button>
-                                    <Button type={"Api"} onClick={() => handleClickDelete(items.id)}>
-                                        Delete
-                                    </Button>
+                                    </EditIncome>:<EditExpanse id={items.id} datas={editData} fetchData={fetchData}>
+                                        Edit
+                                    </EditExpanse>}
+                                    <Button onClick={() => handleClickDelete(items.id)}>Delete</Button>
                                 </td>
                             </tr>
-                        );
-                    })}
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan={7}>Belum ada transaksi</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </>

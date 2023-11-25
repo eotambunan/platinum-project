@@ -2,11 +2,11 @@ import Header from "@/components/elements/Header";
 import Table from "../elements/Table";
 
 const History = (props)=>{
-    const {children,data} = props
+    const {children} = props
     return(
         <>
         <Header>{children}</Header>
-        <Table data={data}/>
+        <Table/>
         </>
     )
 }

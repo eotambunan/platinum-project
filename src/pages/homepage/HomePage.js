@@ -19,7 +19,7 @@ export default function LandingPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Navbar />
+        <Navbar/>
         <Container>
           <SpacedContainer />
           <Hero />
