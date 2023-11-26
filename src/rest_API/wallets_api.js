@@ -10,10 +10,10 @@ if (cookies) {
         console.log(error);
     }
 }
-
+const url = "https://moneytracker.cyclic.app"
 export const getWallet = async ()=>{
   try {
-    const response = await axios.get("http://localhost:3000/api/wallet/v1/getWallet",{
+    const response = await axios.get(`${url}/api/wallet/v1/getWallet`,{
       params: {
         user_id,
     },
@@ -31,7 +31,7 @@ export const getWallet = async ()=>{
 
 export const getWalletSaldo = async () => {
     try {
-        const response = await axios.get("http://localhost:3000/api/wallet/v1/walletsaldo", {
+        const response = await axios.get(`${url}/api/wallet/v1/walletsaldo`, {
             params: {
                 user_id: user_id,
             },
@@ -46,7 +46,7 @@ export const getWalletSaldo = async () => {
 // export const getSaldoMonthly = async () =>{
 //     try {
 //         const response = await axios.post(
-//             "http://localhost:3000/api/wallet/v1/saldomonthly",
+//             `${url}/api/wallet/v1/saldomonthly",
 //             {
 //               user_id: 1,
 //             }
@@ -59,7 +59,7 @@ export const getWalletSaldo = async () => {
 
 export const createWallet = async (payload) => {
     try {
-        const response = await axios.post("http://localhost:3000/api/wallet/v1/addwallet", {
+        const response = await axios.post(`${url}/api/wallet/v1/addwallet`, {
             user_id: user_id,
             category: payload.category,
             description: payload.description,
