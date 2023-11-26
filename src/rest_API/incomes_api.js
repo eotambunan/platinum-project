@@ -15,7 +15,21 @@ if(cookies){
 const getIncomeTotalMonthly = async () => {
     try {
     //    console.log(parsedCookies);
-        const response = await axios.get("http://localhost:3001/api/income/v1/getall", {
+        const response = await axios.get("http://localhost:3000/api/income/v1/getall", {
+            params: {
+                user_id
+            },
+        });
+        return response.data.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const getIncomeMonthly = async () => {
+    try {
+    //    console.log(parsedCookies);
+        const response = await axios.get("http://localhost:3000/api/income/v1/totalmonthly", {
             params: {
                 user_id
             },
@@ -32,7 +46,7 @@ const getIncomeTotalMonthly = async () => {
 const addIncome = async ( payload ) => {
     try {
         // console.log(user_id);
-        const response = await axios.post("http://localhost:3001/api/income/v1/add", {
+        const response = await axios.post("http://localhost:3000/api/income/v1/add", {
             user_id,
             wallet_id: payload.wallet_id,
             income_id: payload.income_id,
@@ -49,7 +63,7 @@ const addIncome = async ( payload ) => {
 
 const deleteIncome=async (payload)=>{
     try {
-        const response = await axios.delete(`http://localhost:3001/api/income/v1/delete/${payload}`)    
+        const response = await axios.delete(`http://localhost:3000/api/income/v1/delete/${payload}`)    
         return response.data.data    
     } catch (error) {
         throw error
@@ -60,7 +74,7 @@ const editIncomeApi = async (payload,id)=>{
     try {
         console.log(payload);
         console.log(id);
-        const response = await axios.put(`http://localhost:3001/api/income/v1/edit/${id}`,{
+        const response = await axios.put(`http://localhost:3000/api/income/v1/edit/${id}`,{
             user_id,
             wallet_id: payload.wallet_id,
             income_id: payload.income_id,
@@ -74,4 +88,4 @@ const editIncomeApi = async (payload,id)=>{
     }
 }
 
-export { getIncomeTotalMonthly, addIncome, deleteIncome, editIncomeApi };
+export { getIncomeMonthly,getIncomeTotalMonthly, addIncome, deleteIncome, editIncomeApi };

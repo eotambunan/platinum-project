@@ -22,7 +22,7 @@ const Wallet = () => {
             const walletResponse = await getWalletSaldo();
             setWallets(walletResponse);
 
-            const filteredDataForChart = walletResponse.map(({wallet_id,saldo})=>({category:wallet_id, value : saldo}))
+            const filteredDataForChart = walletResponse.map(({category,saldo})=>({category:category, value : saldo}))
             setChartData(filteredDataForChart)
 
             // const monthlySaldoResponse = await getSaldoMonthly();

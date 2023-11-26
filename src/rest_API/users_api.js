@@ -15,7 +15,7 @@ if(cookies){
 
 const loginApi = async(payload)=>{
     try {
-        const response = await axios.post("http://localhost:3001/api/users/v1/login",{
+        const response = await axios.post("http://localhost:3000/api/users/v1/login",{
             email : payload.email,
             password: payload.password
         })
@@ -27,7 +27,7 @@ const loginApi = async(payload)=>{
 
 const uploadImage = async(data)=>{
     try {
-        const response = await axios.post("http://localhost:3001/api/users/v1/cloudinary",{
+        const response = await axios.post("http://localhost:3000/api/users/v1/cloudinary",{
             file:data
         })
     } catch (error) {
@@ -37,7 +37,7 @@ const uploadImage = async(data)=>{
 }
 const saveImage = async(data)=>{
     try {
-        const response = await axios.put("http://localhost:3001/api/users/v1/cloudinary",{
+        const response = await axios.put("http://localhost:3000/api/users/v1/cloudinary",{
             id,
             user_image : data
         })
@@ -49,7 +49,7 @@ const saveImage = async(data)=>{
 
 const getUserDetail = async()=>{
     try {
-        const response = await axios.get("http://localhost:3001/api/users/v1/cloudinary",{
+        const response = await axios.get("http://localhost:3000/api/users/v1/cloudinary",{
             params: {id}
         })
         return response.data.data
