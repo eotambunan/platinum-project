@@ -14,6 +14,7 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+    color: white;
   }
   
   .inputField {
@@ -54,6 +55,7 @@
     cursor: pointer;
     font-size: 14px;
     margin-top: 10px;
+    display: inline-block; /* Add this line to make it inline with the text */
   }
   
   .switchButton:hover {
