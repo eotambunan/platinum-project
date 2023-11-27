@@ -1,6 +1,12 @@
 import { IconContext } from "react-icons";
 import styles from "./sidebar.module.css";
-import { MdOutlineSpaceDashboard, MdOutlineTrendingDown, MdOutlineTrendingUp, MdWallet, MdPersonOutline } from "react-icons/md";
+import {
+  MdOutlineSpaceDashboard,
+  MdOutlineTrendingDown,
+  MdOutlineTrendingUp,
+  MdWallet,
+  MdPersonOutline,
+} from "react-icons/md";
 import WalletSummary from "../elements/WalletSummary";
 import ExpenseForm from "../elements/asdasd";
 import IncomeForm from "../elements/ModalIncomeForm";

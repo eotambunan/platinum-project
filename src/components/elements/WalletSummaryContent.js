@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./element.module.css";
 
 const WalletSummaryContent = ({ summaryLabel, value, icon }) => {

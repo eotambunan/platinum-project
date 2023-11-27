@@ -13,9 +13,8 @@ if(cookies){
     }
 }
 
-
 const getExpanseTotalMonthly = async () => {
-    try {
+  try {
     //    console.log(parsedCookies);
         const response = await axios.get(`${apiUrl}/expanse/v1/getall`, {
             params: {
