@@ -13,6 +13,7 @@ if(cookies){
     }
 }
 
+const url = "https://moneytracker.cyclic.app"
 
 const getExpanseTotalMonthly = async () => {
     try {
@@ -74,4 +75,4 @@ const editExpanseApi = async (payload,id)=>{
     }
 }
 
-export { getExpanseTotalMonthly, addExpanse, deleteExpanse, editExpanseApi };
+export {getExpanseMonthly, getExpanseTotalMonthly, addExpanse, deleteExpanse, editExpanseApi };

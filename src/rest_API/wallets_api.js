@@ -12,7 +12,7 @@ if (cookies) {
         console.log(error);
     }
 }
-
+const url = "https://moneytracker.cyclic.app"
 export const getWallet = async ()=>{
   try {
     const response = await axios.get(`${apiUrl}/wallet/v1/getWallet`,{
@@ -46,7 +46,7 @@ export const getWalletSaldo = async () => {
 // export const getSaldoMonthly = async () =>{
 //     try {
 //         const response = await axios.post(
-//             "http://localhost:3000/api/wallet/v1/saldomonthly",
+//             `${url}/api/wallet/v1/saldomonthly",
 //             {
 //               user_id: 1,
 //             }

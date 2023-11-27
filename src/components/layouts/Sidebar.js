@@ -13,7 +13,7 @@ const Sidebar = () => {
                 <div className={styles.sidebar}>
                     <div className={styles.sidebarItem}>
                         <ul>
-                            <a href="#">
+                            <a href="/dashboard">
                                 <IconContext.Provider value={{ color: "white", size: "2rem" }}>
                                     <MdOutlineSpaceDashboard className={styles.icons} />
                                 </IconContext.Provider>

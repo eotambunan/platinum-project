@@ -13,7 +13,7 @@ if(cookies){
         console.log(error);
     }
 }
-
+const url = "https://moneytracker.cyclic.app"
 
 const getIncomeTotalMonthly = async () => {
     try {
@@ -75,4 +75,4 @@ const editIncomeApi = async (payload,id)=>{
     }
 }
 
-export { getIncomeTotalMonthly, addIncome, deleteIncome, editIncomeApi };
+export { getIncomeMonthly,getIncomeTotalMonthly, addIncome, deleteIncome, editIncomeApi };
