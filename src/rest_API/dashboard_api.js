@@ -13,12 +13,11 @@ if (cookies) {
 
 const getExpanseTotalMonthly = async () => {
   try {
-    //    console.log(parsedCookies);
     const response = await axios.get(
       "http://localhost:3001/api/expanse/v1/getall",
       {
         params: {
-          user_id,
+          user_id: user_id,
         },
       }
     );
@@ -27,35 +26,16 @@ const getExpanseTotalMonthly = async () => {
     throw error;
   }
 };
-// const api = axios.create({
-//     baseURL:process.env.NEXT_PUBLIC_API_BASE_URL
-// })
 
-const addExpanse = async (payload) => {
+const getExpanseRecent = async () => {
   try {
-    // console.log(user_id);
-    const response = await axios.post(
-      "http://localhost:3001/api/expanse/v1/add",
+    const response = await axios.get(
+      "http://localhost:3001/api/expanse/v1/recent",
       {
-        user_id,
-        wallet_id: payload.wallet_id,
-        expanses_id: payload.expanses_id,
-        amount: payload.amount,
-        date_transaction: new Date(payload.date_transaction).toISOString(),
-        description: payload.description,
+        params: {
+          user_id: user_id,
+        },
       }
-    );
-
-    return response.data.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-const deleteExpanse = async (payload) => {
-  try {
-    const response = await axios.delete(
-      `http://localhost:3001/api/expanse/v1/delete/${payload}`
     );
     return response.data.data;
   } catch (error) {
@@ -82,4 +62,38 @@ const editExpanseApi = async (payload, id) => {
   }
 };
 
-export { getExpanseTotalMonthly, addExpanse, deleteExpanse, editExpanseApi };
+const deleteExpanse = async (payload) => {
+  try {
+    const response = await axios.delete(
+      `http://localhost:3001/api/expanse/v1/delete/${payload}`
+    );
+    return response.data.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getIncomeTotalMonthly = async () => {
+  try {
+    //    console.log(parsedCookies);
+    const response = await axios.get(
+      "http://localhost:3001/api/income/v1/getall",
+      {
+        params: {
+          user_id,
+        },
+      }
+    );
+    return response.data.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export {
+  getExpanseTotalMonthly,
+  getExpanseRecent,
+  editExpanseApi,
+  deleteExpanse,
+  getIncomeTotalMonthly,
+};
