@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 
 ChartJS.register(BarElement, LineElement, ArcElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
-const Chart = ({ type, title, color, datas }) => {
+const ChartTesting = ({ type, title, color, datas, datass }) => {
     const [category, setCategory] = useState([]);
+    const [categorys, setCategorys] = useState([]);
     const [value, setValue] = useState([]);
+    const [values,setValues] = useState([])
 
     useEffect(() => {
         const categoryTotalValue = datas.reduce((accumulator, currentItem) => {
@@ -14,24 +16,41 @@ const Chart = ({ type, title, color, datas }) => {
             accumulator[category] = (accumulator[category] || 0) + value;
             return accumulator;
         }, {});
+        const categoryTotalValues = datass.reduce((accumulator, currentItem) => {
+            const { category, value } = currentItem;
+            accumulator[category] = (accumulator[category] || 0) + value;
+            return accumulator;
+        }, {});
 
         const uniqueCategories = Object.keys(categoryTotalValue);
+        const uniqueCategoriess = Object.keys(categoryTotalValues);
         const uniqueValues = Object.values(categoryTotalValue);
+        const uniqueValuess = Object.values(categoryTotalValues);
         setCategory(uniqueCategories);
+        setCategorys(uniqueCategoriess);
         setValue(uniqueValues);
-    }, [datas]);
+        setValues(uniqueValuess);
+    }, [datas,datass]);
 
-    let colorRandom = ["#FFC0CB", "#AED6F1", "#98FB98", "#FFD700", "#B19CD9", "#D3D3D3", "#E6E6FA"];
 
 
     const data = {
         labels: category,
         datasets: [
             {
-                label: title,
+                label: "Income",
                 data: value,
-                backgroundColor: type === "Line" || type === "Bar" ? color : colorRandom,
-                borderColor: type === "Line" || type === "Bar" ? color : "white",
+                backgroundColor: "green",
+                borderColor: "green",
+                pointBorderColor: "black",
+                fill: true,
+                tension: 0.3,
+            },
+            {
+                label: "Expanse",
+                data: values,
+                backgroundColor: "red",
+                borderColor: "red",
                 pointBorderColor: "black",
                 fill: true,
                 tension: 0.3,
@@ -42,12 +61,12 @@ const Chart = ({ type, title, color, datas }) => {
         plugin: {
             legend: true,
         },
-        scales: {
-            y: {
-                min: Math.min(...value) * 0.9,
-                max: Math.max(...value),
-            },
-        },
+        // scales: {
+        //     y: {
+        //         min: Math.min(...value) * 0.9,
+        //         max: Math.max(...value),
+        //     },
+        // },
     };
     return (
         <>
@@ -59,4 +78,4 @@ const Chart = ({ type, title, color, datas }) => {
     );
 };
 
-export default Chart;
+export default ChartTesting;

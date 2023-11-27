@@ -6,6 +6,7 @@ import { getExpanseTotalMonthly } from "@/rest_API/expanses_api";
 import Chart from "@/components/elements/Chart";
 import Table from "@/components/elements/Table";
 import { useRouter } from "next/router";
+import Loading from "@/components/layouts/loading/Loading";
 
 const expanses = () => {
     const [chartData, setChartData] = useState([]);
@@ -14,9 +15,6 @@ const expanses = () => {
 
     useEffect(() => {
         fetchData();
-    }, []);
-    useEffect(() => {
-        console.log("ok");
     }, []);
 
     const fetchData = async () => {
@@ -48,6 +46,7 @@ const expanses = () => {
     const { query } = useRouter();
     return (
         <Row>
+            <Loading/>
             <Col md="8">
                 <div>
                     <h1>ini adalah halaman expanses</h1>

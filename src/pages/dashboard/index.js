@@ -3,15 +3,15 @@ import { getExpanseMonthly } from "@/rest_API/expanses_api";
 import { getIncomeMonthly } from "@/rest_API/incomes_api";
 import { useEffect, useState } from "react";
 import Chart from "@/components/elements/Chart";
+import ChartTesting from "@/components/elements/ChartTesting";
+import Loading from "@/components/layouts/loading/Loading";
 
 const dashboard = () => {
   const [chartExpanse, setChartExpanse] = useState([]);
   const [chartIncome, setChartIncome] = useState([]);
+  
   useEffect(() => {
     fetchData();
-  }, []);
-  useEffect(() => {
-    console.log("ok");
   }, []);
   const fetchData = async () => {
     try {
@@ -36,12 +36,16 @@ const dashboard = () => {
       setChartIncome(plotIncome);
     } catch (error) {
       console.error(error);
+    } finally{
     }
   };
 
+
   return (
     <Row>
-      <Col md="8">
+      <Col md="10">
+          <Loading></Loading>
+          <>
         <div>
           <h1>Monthly Expanse</h1>
           <Chart
@@ -63,7 +67,17 @@ const dashboard = () => {
           >
             Expanses monthly
           </Chart>
+          <ChartTesting
+            type={"Line"}
+            title={"Income"}
+            color={"green"}
+            datas={chartIncome}
+            datass = {chartExpanse}
+          >
+            Expanses monthly
+          </ChartTesting>
         </div>
+          </>
       </Col>
     </Row>
   );

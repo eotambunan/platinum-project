@@ -6,6 +6,7 @@ import { AiFillBank } from "react-icons/ai";
 import Graphic from "@/components/fragments/Graphic";
 import ModalWallet from "@/components/elements/ModalWallet";
 import Chart from "@/components/elements/Chart";
+import Loading from "@/components/layouts/loading/Loading";
 const Wallet = () => {
     const [wallets, setWallets] = useState([]);
     const [monthlySaldoData, setMonthlySaldoData] = useState([]);
@@ -36,6 +37,7 @@ const Wallet = () => {
 
     return (
         <Row>
+            <Loading/>
             <Col>
                 {loading ? (
                     <Spinner animation="border" role="status">

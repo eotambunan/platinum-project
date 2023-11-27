@@ -13,12 +13,12 @@ const Sidebar = () => {
                 <div className={styles.sidebar}>
                     <div className={styles.sidebarItem}>
                         <ul>
-                            <a href="/dashboard">
+                            <Link href="/dashboard">
                                 <IconContext.Provider value={{ color: "white", size: "2rem" }}>
                                     <MdOutlineSpaceDashboard className={styles.icons} />
                                 </IconContext.Provider>
                                 Dashboard
-                            </a>
+                            </Link>
                         </ul>
                         <ul>
                             <Link href="/expanses">

@@ -13,7 +13,6 @@ if(cookies){
         console.log(error);
     }
 }
-const url = "https://moneytracker.cyclic.app"
 
 const getIncomeTotalMonthly = async () => {
     try {
@@ -28,13 +27,23 @@ const getIncomeTotalMonthly = async () => {
         throw error;
     }
 };
-// const api = axios.create({
-//     baseURL:process.env.NEXT_PUBLIC_API_BASE_URL
-// })
+
+const getIncomeMonthly = async () => {
+    try {
+    //    console.log(parsedCookies);
+        const response = await axios.get(`${apiUrl}/income/v1/totalmonthly`, {
+            params: {
+                user_id
+            },
+        });
+        return response.data.data;
+    } catch (error) {
+        throw error;
+    }
+};
 
 const addIncome = async ( payload ) => {
     try {
-        // console.log(user_id);
         const response = await axios.post(`${apiUrl}/income/v1/add`, {
             user_id,
             wallet_id: payload.wallet_id,

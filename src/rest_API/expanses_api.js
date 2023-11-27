@@ -13,7 +13,6 @@ if(cookies){
     }
 }
 
-const url = "https://moneytracker.cyclic.app"
 
 const getExpanseTotalMonthly = async () => {
     try {
@@ -28,9 +27,20 @@ const getExpanseTotalMonthly = async () => {
         throw error;
     }
 };
-// const api = axios.create({
-//     baseURL:process.env.NEXT_PUBLIC_API_BASE_URL
-// })
+
+const getExpanseMonthly = async () => {
+    try {
+    //    console.log(parsedCookies);
+        const response = await axios.get(`${apiUrl}/expanse/v1/totalmonthly`, {
+            params: {
+                user_id
+            },
+        });
+        return response.data.data;
+    } catch (error) {
+        throw error;
+    }
+};
 
 const addExpanse = async ( payload ) => {
     try {

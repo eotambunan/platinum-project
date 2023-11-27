@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import { getUserDetail } from '@/rest_API/users_api';
 import { Col, Row } from 'react-bootstrap';
+import Loading from '@/components/layouts/loading/Loading';
 
 
 const Profile = () => {
@@ -19,6 +20,9 @@ const Profile = () => {
     }
 
   return (
+    <>
+    
+    <Loading/>
     <div className="container mt-5">
       <Row>
         <Col md="7">
@@ -40,6 +44,7 @@ const Profile = () => {
       </Row>
 
     </div>
+    </>
   );
 }
 

@@ -6,6 +6,7 @@ import Chart from "@/components/elements/Chart";
 import Table from "@/components/elements/Table";
 import { useRouter } from "next/router";
 import AddIncome from "@/components/elements/AddIncome";
+import Loading from "@/components/layouts/loading/Loading";
 
 const income = () => {
     const [chartData, setChartData] = useState([]);
@@ -48,6 +49,7 @@ const income = () => {
     const { query } = useRouter();
     return (
         <Row>
+            <Loading/>
             <Col md="8">
                 <div>
                     <h1>ini adalah halaman Income</h1>
