@@ -57,7 +57,7 @@ const expanses = () => {
                     </Chart>
                 </div>
                 <div>
-                    <Table datas={tableData} fetchData={fetchData} slug={query.slug}>
+                    <Table datas={tableData} fetchData={fetchData} slug={query.slug} type={"expanse"}>
                         ini adalah table history
                     </Table>
                 </div>
