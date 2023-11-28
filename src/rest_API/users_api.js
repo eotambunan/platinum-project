@@ -26,6 +26,21 @@ const loginApi = async(payload)=>{
     }
 }
 
+const registerApi = async(payload)=>{
+    try {
+        console.log(payload);
+        const response = await axios.post(`${apiUrl}/users/v1/regis`,{
+            name : payload.name,
+            email : payload.email,
+            password : payload.password,
+            role : "setrip"
+        })
+        return response
+    } catch (error) {
+        throw error
+    }
+}
+
 const uploadImage = async(data)=>{
     try {
         const response = await axios.post(`${apiUrl}/users/v1/cloudinary`,{
@@ -59,4 +74,4 @@ const getUserDetail = async()=>{
     }
 }
 
-export {loginApi,getUserDetail,uploadImage,saveImage}
+export {loginApi,getUserDetail,uploadImage,saveImage,registerApi}

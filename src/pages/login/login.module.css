@@ -1,63 +1,99 @@
-/* login.module.css */
-
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .formContainer {
     width: 400px;
-    padding: 20px;
-    background-color: #4caf50; /* Green background color */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    color: white;
-  }
-  
-  .inputField {
+    height: 500px;
+    overflow: hidden;
+    background: url("https://img.freepik.com/free-photo/abstract-blur-empty-green-gradient-studio-well-use-as-background-website-template-frame-business-report_1258-54627.jpg") no-repeat center/ cover;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #000;
+    position: relative;
+}
+.label1 {
+    color: #fff;
+    font-size: 3.5em;
+    justify-content: center;
+    display: flex;
+    margin: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+.label2 {
+    color: greenyellow;
+    font-size: 3.5em;
+    justify-content: center;
+    display: flex;
+    margin: 1px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.input {
+    width: 60%;
+    height: 30px;
+    background: #e0dede;
+    justify-content: center;
+    display: flex;
+    margin: 20px auto;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+.button {
+    width: 60%;
+    height: 40px;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: rgb(99, 179, 62);
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+}
+.button:hover {
+    background: rgb(130, 160, 116);
+}
+.button:disabled {
+  background-color: #ccc; 
+  cursor: not-allowed; 
+  opacity: 0.7;
+}
+
+.signup1 {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-  }
-  
-  .errorMsg {
-    color: red;
-    margin-bottom: 15px;
-  }
-  
-  .submitButton {
-    background-color: #45a049; /* Green submit button */
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .submitButton:hover {
-    background-color: #4cae4c; /* Darker green on hover */
-  }
-  
-  .switchButton {
-    background-color: #f44336; /* Red switch button */
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
-    display: inline-block; /* Add this line to make it inline with the text */
-  }
-  
-  .switchButton:hover {
-    background-color: #d32f2f; /* Darker red on hover */
-  }
+    height: 100%;
+    transition: 0.9s ease-in-out;
+}
+.signup2 {
+    width: 100%;
+    height: 100%;
+    transition: 0.9s ease-in-out;
+    font-size: 10px;
+    opacity: 0.6;
+}
+.login1,
+.login2 {
+    height: 460px;
+    width: 100%;
+    background: #eee;
+    border-radius: 60% / 10%;
+    transition: transform 0.9s ease-in-out;
+    position: absolute;
+}
+
+.login1 {
+    transform: translateY(-110px);
+    background-color: grey;
+}
+
+.login2 {
+    transform: translateY(-440px);
+    background-color: grey;
+}

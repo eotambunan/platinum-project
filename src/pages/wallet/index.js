@@ -39,11 +39,7 @@ const Wallet = () => {
         <Row>
             <Loading/>
             <Col>
-                {loading ? (
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                ) : error ? (
+                { error ? (
                     <Alert variant="danger">{error}</Alert>
                 ) : wallets && wallets.length === 0 ? (
                     <p>No wallet data available.</p>
