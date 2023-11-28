@@ -31,3 +31,17 @@
 .summary ul {
   margin: 0;
 }
+
+.filter-button {
+  background-color: #3498db; /* Blue color */
+  color: #fff; /* White text */
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filter-button:hover {
+  background-color: #2980b9; /* Darker blue color on hover */
+}

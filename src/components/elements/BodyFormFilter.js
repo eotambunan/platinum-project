@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "./Button";
 import Graphic from "../fragments/Graphic";
 import Chart from "./Chart";
+import styles from "./element.module.css"
 
 const { Row, Col, Form } = require("react-bootstrap");
 
@@ -63,7 +64,7 @@ const BodyFormFilter = ({ datas }) => {
                     <option value="2023">2023</option>
                 </Form.Select>
             </Col>
-            <button onClick={handleClick}>klik</button>
+            <button className={styles.filterButton} onClick={handleClick}>klik</button>
             <div className="mt-3">
                 {!chartFilterData||chartFilterData.length==0 && <h1>data tidak ada</h1>}
                 {chartFilterData && (
