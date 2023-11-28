@@ -32,7 +32,7 @@
   margin: 0;
 }
 
-.filter-button {
+.filterButton {
   background-color: #3498db; /* Blue color */
   color: #fff; /* White text */
   border: none;
@@ -42,6 +42,18 @@
   transition: background-color 0.3s;
 }
 
-.filter-button:hover {
+.filterButton:hover {
   background-color: #2980b9; /* Darker blue color on hover */
+}
+
+.wallet-summary-content {
+  display: flex;
+  justify-content: space-between; /* Add space between the value and the icon */
+  align-items: center;
+  text-align: center;
+}
+
+.icon {
+  margin-right: 20px; /* Add spacing between the icon and the value */
+  font-size: 2rem; /* Set the desired font size */
 }

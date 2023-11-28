@@ -64,7 +64,7 @@ const BodyFormFilter = ({ datas }) => {
                     <option value="2023">2023</option>
                 </Form.Select>
             </Col>
-            <button className={styles.filterButton} onClick={handleClick}>klik</button>
+            <button className={styles.filterButton} onClick={handleClick}>Apply Filter</button>
             <div className="mt-3">
                 {!chartFilterData||chartFilterData.length==0 && <h1>data tidak ada</h1>}
                 {chartFilterData && (

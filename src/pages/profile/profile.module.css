@@ -1,0 +1,50 @@
+.container {
+    max-width: 960px; /* Adjust the maximum width as needed */
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .card-content {
+    margin-bottom: 1rem;
+  }
+  
+  .profile-info {
+    margin-bottom: 2rem;
+  }
+  
+  .profile-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .profile-info p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .change-photo {
+    margin-top: 2rem;
+  }
+  
+  .user-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .no-photo-text {
+    font-size: 1.5rem;
+    color: #888;
+    text-align: center;
+  }
