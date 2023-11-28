@@ -1,6 +1,9 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+
 const cookies = Cookies.get('user-access')
 let user_id
 if(cookies){
@@ -11,11 +14,10 @@ if(cookies){
     }
 }
 
-
 const getIncomeTotalMonthly = async () => {
     try {
     //    console.log(parsedCookies);
-        const response = await axios.get("http://localhost:3001/api/income/v1/getall", {
+        const response = await axios.get(`${apiUrl}/income/v1/getall`, {
             params: {
                 user_id
             },
@@ -25,14 +27,24 @@ const getIncomeTotalMonthly = async () => {
         throw error;
     }
 };
-// const api = axios.create({
-//     baseURL:process.env.NEXT_PUBLIC_API_BASE_URL
-// })
+
+const getIncomeMonthly = async () => {
+    try {
+    //    console.log(parsedCookies);
+        const response = await axios.get(`${apiUrl}/income/v1/totalmonthly`, {
+            params: {
+                user_id
+            },
+        });
+        return response.data.data;
+    } catch (error) {
+        throw error;
+    }
+};
 
 const addIncome = async ( payload ) => {
     try {
-        // console.log(user_id);
-        const response = await axios.post("http://localhost:3001/api/income/v1/add", {
+        const response = await axios.post(`${apiUrl}/income/v1/add`, {
             user_id,
             wallet_id: payload.wallet_id,
             income_id: payload.income_id,
@@ -49,7 +61,7 @@ const addIncome = async ( payload ) => {
 
 const deleteIncome=async (payload)=>{
     try {
-        const response = await axios.delete(`http://localhost:3001/api/income/v1/delete/${payload}`)    
+        const response = await axios.delete(`${apiUrl}/income/v1/delete/${payload}`)    
         return response.data.data    
     } catch (error) {
         throw error
@@ -58,9 +70,7 @@ const deleteIncome=async (payload)=>{
 
 const editIncomeApi = async (payload,id)=>{
     try {
-        console.log(payload);
-        console.log(id);
-        const response = await axios.put(`http://localhost:3001/api/income/v1/edit/${id}`,{
+        const response = await axios.put(`${apiUrl}/income/v1/edit/${id}`,{
             user_id,
             wallet_id: payload.wallet_id,
             income_id: payload.income_id,
@@ -74,4 +84,4 @@ const editIncomeApi = async (payload,id)=>{
     }
 }
 
-export { getIncomeTotalMonthly, addIncome, deleteIncome, editIncomeApi };
+export { getIncomeMonthly,getIncomeTotalMonthly, addIncome, deleteIncome, editIncomeApi };

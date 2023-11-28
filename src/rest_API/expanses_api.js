@@ -1,6 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 const cookies = Cookies.get('user-access')
 let user_id
 if(cookies){
@@ -11,11 +13,10 @@ if(cookies){
     }
 }
 
-
 const getExpanseTotalMonthly = async () => {
-    try {
+  try {
     //    console.log(parsedCookies);
-        const response = await axios.get("http://localhost:3001/api/expanse/v1/getall", {
+        const response = await axios.get(`${apiUrl}/expanse/v1/getall`, {
             params: {
                 user_id
             },
@@ -25,14 +26,25 @@ const getExpanseTotalMonthly = async () => {
         throw error;
     }
 };
-// const api = axios.create({
-//     baseURL:process.env.NEXT_PUBLIC_API_BASE_URL
-// })
+
+const getExpanseMonthly = async () => {
+    try {
+    //    console.log(parsedCookies);
+        const response = await axios.get(`${apiUrl}/expanse/v1/totalmonthly`, {
+            params: {
+                user_id
+            },
+        });
+        return response.data.data;
+    } catch (error) {
+        throw error;
+    }
+};
 
 const addExpanse = async ( payload ) => {
     try {
         // console.log(user_id);
-        const response = await axios.post("http://localhost:3001/api/expanse/v1/add", {
+        const response = await axios.post(`${apiUrl}/expanse/v1/add`, {
             user_id,
             wallet_id: payload.wallet_id,
             expanses_id: payload.expanses_id,
@@ -49,7 +61,7 @@ const addExpanse = async ( payload ) => {
 
 const deleteExpanse=async (payload)=>{
     try {
-        const response = await axios.delete(`http://localhost:3001/api/expanse/v1/delete/${payload}`)    
+        const response = await axios.delete(`${apiUrl}/expanse/v1/delete/${payload}`)    
         return response.data.data    
     } catch (error) {
         throw error
@@ -58,7 +70,7 @@ const deleteExpanse=async (payload)=>{
 
 const editExpanseApi = async (payload,id)=>{
     try {
-        const response = await axios.put(`http://localhost:3001/api/expanse/v1/edit/${id}`,{
+        const response = await axios.put(`${apiUrl}/expanse/v1/edit/${id}`,{
             user_id,
             wallet_id: payload.wallet_id,
             expanses_id: payload.expanses_id,
@@ -72,4 +84,4 @@ const editExpanseApi = async (payload,id)=>{
     }
 }
 
-export { getExpanseTotalMonthly, addExpanse, deleteExpanse, editExpanseApi };
+export {getExpanseMonthly, getExpanseTotalMonthly, addExpanse, deleteExpanse, editExpanseApi };

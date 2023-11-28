@@ -1,4 +1,6 @@
 import { deleteIncome } from "@/rest_API/incomes_api";
+import { deleteExpanse } from "@/rest_API/expanses_api";
+
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
@@ -29,7 +31,7 @@ const Table = ({ datas, fetchData, slug, type }) => {
     };
     const handleClickDelete = async (id) => {
         try {
-            await deleteIncome(id);
+            type=="expanse" ? await deleteExpanse(id):await deleteIncome(id)
             fetchData();
         } catch (error) {
             console.log(error);

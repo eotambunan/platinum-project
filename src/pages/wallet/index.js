@@ -6,6 +6,7 @@ import { AiFillBank } from "react-icons/ai";
 import Graphic from "@/components/fragments/Graphic";
 import ModalWallet from "@/components/elements/ModalWallet";
 import Chart from "@/components/elements/Chart";
+import Loading from "@/components/layouts/loading/Loading";
 const Wallet = () => {
     const [wallets, setWallets] = useState([]);
     const [monthlySaldoData, setMonthlySaldoData] = useState([]);
@@ -22,7 +23,7 @@ const Wallet = () => {
             const walletResponse = await getWalletSaldo();
             setWallets(walletResponse);
 
-            const filteredDataForChart = walletResponse.map(({wallet_id,saldo})=>({category:wallet_id, value : saldo}))
+            const filteredDataForChart = walletResponse.map(({category,saldo})=>({category:category, value : saldo}))
             setChartData(filteredDataForChart)
 
             // const monthlySaldoResponse = await getSaldoMonthly();
@@ -36,12 +37,9 @@ const Wallet = () => {
 
     return (
         <Row>
+            <Loading/>
             <Col>
-                {loading ? (
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                ) : error ? (
+                { error ? (
                     <Alert variant="danger">{error}</Alert>
                 ) : wallets && wallets.length === 0 ? (
                     <p>No wallet data available.</p>

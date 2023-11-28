@@ -6,21 +6,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 
 export default function App({ Component, pageProps }) {
-    const [isLogin,setIsLogin] = useState(false)
-    const [userData,setUserData] = useState({})
+    const [isLogin, setIsLogin] = useState(false);
+    const [userData, setUserData] = useState({});
 
-    useEffect(()=>{
-        const userDataCookie = getCookie('user-access')
+    useEffect(() => {
+        const userDataCookie = getCookie("user-access");
         if (userDataCookie) {
-            setUserData(userDataCookie)
-            setIsLogin(true)
+            setUserData(userDataCookie);
+            setIsLogin(true);
         }
-    },[])
+    }, []);
     return (
-        <GlobalContext.Provider value={{isLogin,setIsLogin,userData}}>
-            <AppShell>
-                <Component {...pageProps} />
-            </AppShell>
+        <GlobalContext.Provider value={{ isLogin, setIsLogin, userData }}>
+                <AppShell>
+                    <Component {...pageProps} />
+                </AppShell>
         </GlobalContext.Provider>
     );
 }

@@ -1,6 +1,12 @@
 import { IconContext } from "react-icons";
 import styles from "./sidebar.module.css";
-import { MdOutlineSpaceDashboard, MdOutlineTrendingDown, MdOutlineTrendingUp, MdWallet, MdPersonOutline } from "react-icons/md";
+import {
+  MdOutlineSpaceDashboard,
+  MdOutlineTrendingDown,
+  MdOutlineTrendingUp,
+  MdWallet,
+  MdPersonOutline,
+} from "react-icons/md";
 import WalletSummary from "../elements/WalletSummary";
 import ExpenseForm from "../elements/asdasd";
 import IncomeForm from "../elements/ModalIncomeForm";
@@ -13,12 +19,12 @@ const Sidebar = () => {
                 <div className={styles.sidebar}>
                     <div className={styles.sidebarItem}>
                         <ul>
-                            <a href="#">
+                            <Link href="/dashboard">
                                 <IconContext.Provider value={{ color: "white", size: "2rem" }}>
                                     <MdOutlineSpaceDashboard className={styles.icons} />
                                 </IconContext.Provider>
                                 Dashboard
-                            </a>
+                            </Link>
                         </ul>
                         <ul>
                             <Link href="/expanses">
