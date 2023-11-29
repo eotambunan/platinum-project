@@ -17,10 +17,12 @@ const login = () => {
         try {
             const payload = {email,password}
             const response = await loginApi(payload)
-            setCookie("user-access",JSON.stringify(response.data),{
+            const dataCookie = {...response.data,token:response.token}
+            console.log(dataCookie);
+            setCookie("user-access",JSON.stringify(dataCookie),{
                 expires : 1
             })
-            router.push('/').then(() => router.reload());
+            // router.push('/').then(() => router.reload());
         } catch (error) {
             console.log(error);
         }

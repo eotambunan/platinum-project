@@ -12,8 +12,18 @@ if (cookies) {
         console.log(error);
     }
 }
+
+const getToken = async ()=>{
+    const {token} = JSON.parse(cookies)
+    if(token){
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;    
+    }
+  }
+  
+
 export const getWallet = async ()=>{
   try {
+    await getToken()
     const response = await axios.get(`${apiUrl}/wallet/v1/getWallet`,{
       params: {
         user_id,
@@ -26,10 +36,9 @@ export const getWallet = async ()=>{
 }
 
 
-
-
 export const getWalletSaldo = async () => {
     try {
+        await getToken()
         const response = await axios.get(`${apiUrl}/wallet/v1/walletsaldo`, {
             params: {
                 user_id: user_id,
@@ -41,22 +50,9 @@ export const getWalletSaldo = async () => {
     }
 };
 
-// export const getSaldoMonthly = async () =>{
-//     try {
-//         const response = await axios.post(
-//             `${url}/api/wallet/v1/saldomonthly",
-//             {
-//               user_id: 1,
-//             }
-//         );
-//         return response.data.data;
-//     } catch (error) {
-//         console.error("Error fetching data:", error);
-//     }
-// }
-
 export const createWallet = async (payload) => {
     try {
+        await getToken()
         const response = await axios.post(`${apiUrl}/wallet/v1/addwallet`, {
             user_id: user_id,
             category: payload.category,

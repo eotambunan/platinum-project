@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import { headers } from "../../next.config";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -13,9 +14,16 @@ if(cookies){
     }
 }
 
+const getToken = async ()=>{
+    const {token} = JSON.parse(cookies)
+    if(token){
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;    
+    }
+}
+
 const getExpanseTotalMonthly = async () => {
   try {
-    //    console.log(parsedCookies);
+    await getToken()
         const response = await axios.get(`${apiUrl}/expanse/v1/getall`, {
             params: {
                 user_id
@@ -29,7 +37,7 @@ const getExpanseTotalMonthly = async () => {
 
 const getExpanseMonthly = async () => {
     try {
-    //    console.log(parsedCookies);
+        await getToken()
         const response = await axios.get(`${apiUrl}/expanse/v1/totalmonthly`, {
             params: {
                 user_id
@@ -43,7 +51,7 @@ const getExpanseMonthly = async () => {
 
 const addExpanse = async ( payload ) => {
     try {
-        // console.log(user_id);
+        await getToken()
         const response = await axios.post(`${apiUrl}/expanse/v1/add`, {
             user_id,
             wallet_id: payload.wallet_id,
@@ -61,6 +69,7 @@ const addExpanse = async ( payload ) => {
 
 const deleteExpanse=async (payload)=>{
     try {
+        await getToken()
         const response = await axios.delete(`${apiUrl}/expanse/v1/delete/${payload}`)    
         return response.data.data    
     } catch (error) {
@@ -70,6 +79,7 @@ const deleteExpanse=async (payload)=>{
 
 const editExpanseApi = async (payload,id)=>{
     try {
+        await getToken()
         const response = await axios.put(`${apiUrl}/expanse/v1/edit/${id}`,{
             user_id,
             wallet_id: payload.wallet_id,
