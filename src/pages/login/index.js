@@ -17,7 +17,9 @@ const login = () => {
         try {
             const payload = {email,password}
             const response = await loginApi(payload)
-            setCookie("user-access",JSON.stringify(response.data),{
+            const dataCookie = {...response.data,token:response.token}
+            console.log(dataCookie);
+            setCookie("user-access",JSON.stringify(dataCookie),{
                 expires : 1
             })
             router.push('/').then(() => router.reload());
@@ -35,7 +37,9 @@ const login = () => {
         const payload = {name,email,password,confirmPassword}
         const response = await registerApi(payload)
         if (response.status==201) {
-          alert("berhasil mendaftar. silahkan log-in")          
+          alert("berhasil mendaftar. silahkan log-in")
+          setIsChecked(false)   
+          setPassword('')       
         } else{throw error}
       } catch (error) {
         console.log(error);

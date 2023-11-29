@@ -1,0 +1,26 @@
+.card {
+    border: 1px solid #e9ecef; /* Border color */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Add some space between cards */
+  }
+  
+  .card-body {
+    display: flex; /* Make the card body a flex container */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center content vertically in the card body */
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #343a40; /* Dark text color */
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    font-size: 1.25rem;
+    color: #007bff; /* Blue text color */
+    font-weight: bold;
+  }

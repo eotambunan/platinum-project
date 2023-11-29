@@ -1,5 +1,5 @@
 import BodyFormFilter from "@/components/elements/BodyFormFilter";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row,Card } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { getIncomeTotalMonthly } from "@/rest_API/incomes_api";
 import Chart from "@/components/elements/Chart";
@@ -7,6 +7,7 @@ import Table from "@/components/elements/Table";
 import { useRouter } from "next/router";
 import AddIncome from "@/components/elements/AddIncome";
 import Loading from "@/components/layouts/loading/Loading";
+import styles from "./income.module.css";
 
 const income = () => {
     const [chartData, setChartData] = useState([]);
@@ -48,26 +49,48 @@ const income = () => {
 
     const { query } = useRouter();
     return (
-        <Row>
-            <Loading/>
-            <Col md="8">
-                <div>
-                    <h1>ini adalah halaman Income</h1>
-                    <AddIncome fetchData={fetchData}>Add Income</AddIncome>
-                    <Chart type={"Bar"} title={"Income"} color={"green"} datas={chartData}>
-                        Income by category monthly
-                    </Chart>
-                </div>
-                <div>
-                    <Table datas={tableData} fetchData={fetchData} slug={query.slug} type={"income"}>
-                        ini adalah table history
-                    </Table>
-                </div>
-            </Col>
-            <Col md="4" style={{ backgroundColor: "grey" }}>
-                <BodyFormFilter datas={filterData} />
-            </Col>
-        </Row>
+      <>
+      <Loading/>
+        <div className={styles.pageContainer}>
+      <Row>
+        <Col md="8" className="mt-4" >
+          <Card className={styles.chartContainer}>
+            <Card.Body>
+              <h1 className={styles.pageTitle}>Income By Category</h1>
+              <AddIncome fetchData={fetchData}>Add Income</AddIncome>
+              <Chart
+                type={"Bar"}
+                title={"Income"}
+                color={"#3498db"} /* Blue color */
+                datas={chartData}
+                height={300} // Adjust the height as needed
+              >
+                Incomes by category monthly
+              </Chart>
+            </Card.Body>
+          </Card>
+          <Card className={styles.tableContainer}>
+            <Card.Body>
+              <h1 className={styles.pageTitle}>Recent Income</h1>
+              <Table datas={tableData} fetchData={fetchData} slug={query.slug}>
+                Ini adalah table history
+              </Table>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md="4"className="mt-4">
+          <Card className={styles.sidebarContainer}>
+            <Card.Body>
+              <h1 className={styles.pageTitle}>
+                Filter Income Category Monthly
+              </h1>
+              <BodyFormFilter datas={filterData} />
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </div>
+      </>
     );
 };
 export default income;

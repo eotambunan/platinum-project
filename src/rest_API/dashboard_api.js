@@ -11,8 +11,17 @@ if (cookies) {
   }
 }
 
+const getToken = async ()=>{
+  const {token} = JSON.parse(cookies)
+  if(token){
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;    
+  }
+}
+
+
 const getExpanseTotalMonthly = async () => {
   try {
+    await getToken()
     const response = await axios.get(
       "http://localhost:3001/api/expanse/v1/getall",
       {
@@ -29,6 +38,7 @@ const getExpanseTotalMonthly = async () => {
 
 const getExpanseRecent = async () => {
   try {
+    await getToken()
     const response = await axios.get(
       "http://localhost:3001/api/expanse/v1/recent",
       {
@@ -45,6 +55,7 @@ const getExpanseRecent = async () => {
 
 const editExpanseApi = async (payload, id) => {
   try {
+    await getToken()
     const response = await axios.put(
       `http://localhost:3001/api/expanse/v1/edit/${id}`,
       {
@@ -64,6 +75,7 @@ const editExpanseApi = async (payload, id) => {
 
 const deleteExpanse = async (payload) => {
   try {
+    await getToken()
     const response = await axios.delete(
       `http://localhost:3001/api/expanse/v1/delete/${payload}`
     );
@@ -75,7 +87,7 @@ const deleteExpanse = async (payload) => {
 
 const getIncomeTotalMonthly = async () => {
   try {
-    //    console.log(parsedCookies);
+    await getToken()
     const response = await axios.get(
       "http://localhost:3001/api/income/v1/getall",
       {
