@@ -1,10 +1,11 @@
-import { Col, Row } from "react-bootstrap";
+import { Col, Row ,Card} from "react-bootstrap";
 import { getExpanseMonthly } from "@/rest_API/expanses_api";
 import { getIncomeMonthly } from "@/rest_API/incomes_api";
 import { useEffect, useState } from "react";
 import Chart from "@/components/elements/Chart";
 import ChartTesting from "@/components/elements/ChartTesting";
 import Loading from "@/components/layouts/loading/Loading";
+import styles from "./dashboard.module.css"
 
 const dashboard = () => {
   const [chartExpanse, setChartExpanse] = useState([]);
@@ -42,44 +43,42 @@ const dashboard = () => {
 
 
   return (
+    <div className={styles.pageContainer}>
     <Row>
-      <Col md="10">
-          <Loading></Loading>
-          <>
-        <div>
-          <h1>Monthly Expanse</h1>
-          <Chart
-            type={"Bar"}
-            title={"Expanse"}
-            color={"red"}
-            datas={chartExpanse}
-          >
-            Expanses monthly
-          </Chart>
-        </div>
-        <div>
-          <h1>Monthly Income</h1>
-          <Chart
-            type={"Bar"}
-            title={"Income"}
-            color={"green"}
-            datas={chartIncome}
-          >
-            Expanses monthly
-          </Chart>
-          <ChartTesting
-            type={"Line"}
-            title={"Income"}
-            color={"green"}
-            datas={chartIncome}
-            datass = {chartExpanse}
-          >
-            Expanses monthly
-          </ChartTesting>
-        </div>
-          </>
+      <Col md="6">
+        <Card className={styles.chartCard}>
+          <Card.Body>
+            <h1 className={styles.chartTitle}>Monthly Expense</h1>
+            <Chart
+              type={"Bar"}
+              title={"Expense"}
+              color={"#FF6384"} 
+              datas={chartExpanse}
+              height={200} // Adjust the height as needed
+            >
+              Expenses monthly
+            </Chart>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col md="6">
+        <Card className={styles.chartCard}>
+          <Card.Body>
+            <h1 className={styles.chartTitle}>Monthly Income</h1>
+            <Chart
+              type={"Bar"}
+              title={"Income"}
+              color={"#4CAF50"} 
+              datas={chartIncome}
+              height={200} // Adjust the height as needed
+            >
+              Income monthly
+            </Chart>
+          </Card.Body>
+        </Card>
       </Col>
     </Row>
+  </div>
   );
 };
 export default dashboard;
