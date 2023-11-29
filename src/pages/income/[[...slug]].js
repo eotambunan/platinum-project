@@ -49,9 +49,10 @@ const income = () => {
 
     const { query } = useRouter();
     return (
+      <>
+      <Loading/>
         <div className={styles.pageContainer}>
       <Row>
-            <Loading/>
         <Col md="8" className="mt-4" >
           <Card className={styles.chartContainer}>
             <Card.Body>
@@ -89,6 +90,7 @@ const income = () => {
         </Col>
       </Row>
     </div>
+      </>
     );
 };
 export default income;

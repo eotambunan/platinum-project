@@ -38,9 +38,11 @@ const Wallet = () => {
   };
 
   return (
+    <>
+    <Loading/>
     <Row>
       <Col>
-        {loading ? (
+        {/* {loading ? (
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
@@ -48,7 +50,7 @@ const Wallet = () => {
           <Alert variant="danger">{error}</Alert>
         ) : wallets && wallets.length === 0 ? (
           <p>No wallet data available.</p>
-        ) : (
+        ) : ( */}
           <Row xs={1} md={2} lg={3} className="g-4 mt-1">
             {wallets.length > 0 ? (
               wallets.map((wallet) => (
@@ -69,7 +71,7 @@ const Wallet = () => {
               <p>No wallets available</p>
             )}
           </Row>
-        )}
+        {/* )} */}
         <Col>
           <div>
             <Card className="mt-4">
@@ -92,6 +94,7 @@ const Wallet = () => {
         </Col>
       </Col>
     </Row>
+    </>
   );
 };
 

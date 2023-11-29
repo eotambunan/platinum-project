@@ -1,58 +1,49 @@
-import DropzoneUploader from '@/components/elements/DropzoneUploader';
-import React, { useEffect, useState } from 'react';
+import DropzoneUploader from "@/components/elements/DropzoneUploader";
+import React, { useEffect, useState } from "react";
 
-import { getUserDetail } from '@/rest_API/users_api';
-import { Col, Row,Card } from 'react-bootstrap';
-import Loading from '@/components/layouts/loading/Loading';
-
+import { getUserDetail } from "@/rest_API/users_api";
+import { Col, Row, Card } from "react-bootstrap";
+import Loading from "@/components/layouts/loading/Loading";
 
 const Profile = () => {
+    const [userDetail, setUserDetail] = useState([]);
+    useEffect(() => {
+        fetchData();
+    }, []);
 
+    const fetchData = async () => {
+        const response = await getUserDetail();
+        setUserDetail(response);
+    };
 
-    const [userDetail,setUserDetail] = useState([])
-    useEffect(()=>{
-      fetchData()
-    },[])
+    return (
+        <>
+            <Loading />
+            <div className="container mt-5">
+                <Row>
+                    <Col md={7}>
+                        <Card className="mb-4 p-4 card">
+                            <h1 className="mb-4 card-title">Profile Page</h1>
 
-    const fetchData = async ()=>{
-      const response = await getUserDetail()
-      setUserDetail(response)
-    }
+                            <div className="mb-4 profile-info">
+                                <h3>Name</h3>
+                                <p>{userDetail.name}</p>
+                                <h3>Email</h3>
+                                <p>{userDetail.email}</p>
+                            </div>
 
-  return (
-    <>
-    
-    <Loading/>
-    <div className="container mt-5">
-    <Row>
-      <Col md={7}>
-        <Card className="mb-4 p-4 card">
-          <h1 className="mb-4 card-title">Profile Page</h1>
-  
-          <div className="mb-4 profile-info">
-            <h3>Name</h3>
-            <p>{userDetail.name}</p>
-            <h3>Email</h3>
-            <p>{userDetail.email}</p>
-          </div>
-  
-          <h2 className="change-photo">Change Photo</h2>
-          <DropzoneUploader fetchData={fetchData} />
-        </Card>
-      </Col>
-  
-      <Col md={5}>
-        <Card className="p-4 card">
-          {userDetail.user_image ? (
-            <img src={userDetail.user_image} className="img-fluid user-image" alt="User" />
-          ) : (
-            <h1 className="no-photo-text">No photo available</h1>
-          )}
-        </Card>
-      </Col>
-    </Row>
-  </div>
-  );
-}
+                            <h2 className="change-photo">Change Photo</h2>
+                            <DropzoneUploader fetchData={fetchData} />
+                        </Card>
+                    </Col>
+
+                    <Col md={5}>
+                        <Card className="p-4 card">{userDetail.user_image ? <img src={userDetail.user_image} className="img-fluid user-image" alt="User" /> : <h1 className="no-photo-text">No photo available</h1>}</Card>
+                    </Col>
+                </Row>
+            </div>
+        </>
+    );
+};
 
 export default Profile;

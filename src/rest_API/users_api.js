@@ -33,8 +33,9 @@ const registerApi = async(payload)=>{
             name : payload.name,
             email : payload.email,
             password : payload.password,
-            role : "setrip"
+            role : "none"
         })
+        console.log(response);
         return response
     } catch (error) {
         throw error
