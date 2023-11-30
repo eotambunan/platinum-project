@@ -1,25 +1,26 @@
 import { useRouter } from "next/router";
 import { Col, Row } from "react-bootstrap";
+import Sidebar from "../Sidebar";
 
-const { default: Sidebar } = require("../Sidebar");
+// const { default: Sidebar } = require("../Sidebar");
 
 const disabledSidebar = ["/", "/login"];
 
 const AppShell = ({ children }) => {
     const { pathname } = useRouter();
     return (
-        <Row>
+        <>
+         {/* <Row> */}
             {disabledSidebar.includes(pathname) ? (
                 <Col md="12">{children}</Col>
             ) : (
                 <>
-                    <Col md="2">
                         <Sidebar />
-                    </Col>
-                    <Col md="10">{children}</Col>
+                    <Col md="12" sm="12" style={{padding:"1vw 8vw 1vw"}}>{children}</Col>
                 </>
             )}
-        </Row>
+         {/* </Row> */}
+        </>
     );
 };
 export default AppShell;

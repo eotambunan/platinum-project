@@ -22,7 +22,7 @@ const login = () => {
             setCookie("user-access",JSON.stringify(dataCookie),{
                 expires : 1
             })
-            router.push('/').then(() => router.reload());
+            router.push('/dashboard').then(() => router.reload());
         } catch (error) {
             console.log(error);
         }
