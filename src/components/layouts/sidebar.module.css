@@ -1,8 +1,8 @@
 .container {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr 5fr;
   height: 100%;
-  margin: 0;
+  margin: 0; */
   
 }
 
@@ -10,6 +10,7 @@
   min-width: 200px;
   min-height: 100vh; 
   background-color: rgb(41, 155, 99);
+  padding: 10px;
 }
 
 .sidebarItem {
@@ -32,16 +33,37 @@
 }
 .sidebarItem ul {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   padding: 8px;
   margin: 0;
   margin-top: 20px;
+  background-color: blue;
+  width: 50px;
 }
 
 .sidebarItem ul:hover {
   background-color: rgb(28, 109, 70);
  
   
+}
+.list{
+  background-color: rgb(28, 109, 70);
+  list-style-type: none;
+  margin-top: 30px;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 5px;
+  transition: 300ms;
+}
+.list:hover {
+  background-color: rgb(1, 59, 1);
+  box-shadow: 0px 0px 10px black;
+  transform: translate(5px, 5px); 
+  transition: transform 300ms, box-shadow 300ms;
+}
+.link{
+  color: white;
+  font-size: 2rem;
 }
 
 .icons {
@@ -64,6 +86,20 @@
   padding: 0;
   margin: 0;
 }
+
+.button{
+  width: 80%;
+  height: 50px;
+  background-color: red;
+  border: none;
+  transition: 200ms;
+}
+.button:hover{
+  font-size: larger;
+  background-color: rgb(121, 7, 7);
+  transition: 200ms;
+}
+
 
 @media (max-width: 768px) {
   .container {
