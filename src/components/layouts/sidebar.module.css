@@ -1,53 +1,75 @@
-.container {
-  display: grid;
-  grid-template-columns: 1fr 5fr;
-  height: 100%;
-  margin: 0;
-  
-}
-
 .sidebar {
-  min-width: 200px;
-  min-height: 100vh; 
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 20vw;
+  height: 100vh; 
   background-color: rgb(41, 155, 99);
+  transition: 200ms;
+  z-index: 10;
+}
+.close {
+  width: 5vw;
+  transition: 200ms;
+  justify-content: center;
+  text-align: center;
 }
 
-.sidebarItem {
-  display: flex;
-  flex-direction: column;
+.wrapper{
+  background-color: white;
+  border: 5px solid black;
+  border-radius: 10px;
+  width: 100%;
+  display: block;
+  margin: 50px auto 20px;
+}
+.wrapperhide{
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 100%;
+  display: block;
+  margin: 50px auto 20px;
+}
+.logo {
+  width: 70%;
+  display: block;
+  margin: auto;
+}
+
+.ul{
   padding: 0;
   margin: 0;
+  width: 80%;
 }
-
-.sidebarItem a {
-  padding-bottom: 16px;
-  font-size: 1.2rem;
-  justify-content: center;
-  text-decoration: none;
-  color: white;
-}
-.sidebarItem a:hover {
+.list{
   background-color: rgb(28, 109, 70);
-  transition: background-color 0.3s ease-in-out; 
+  list-style-type: none;
+  margin-top: 30px;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 5px;
+  transition: 300ms;
+  width: 150%;
+  justify-content: center;
 }
-.sidebarItem ul {
+.list:hover {
+  background-color: rgb(1, 59, 1);
+  box-shadow: 0px 0px 10px black;
+  transform: translate(5px, 5px); 
+  transition: transform 300ms, box-shadow 300ms;
+}
+.link{
+  color: white;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
-  padding: 8px;
-  margin: 0;
-  margin-top: 20px;
-}
-
-.sidebarItem ul:hover {
-  background-color: rgb(28, 109, 70);
- 
-  
+  justify-content: center;
 }
 
 .icons {
-  width: 50px;
+  width: 1.5rem;
 }
-
 .pageContent {
   width: 100%;
   display: flex;
@@ -65,12 +87,92 @@
   margin: 0;
 }
 
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
+.button{
+  width: 80%;
+  height: 50px;
+  display: block;
+  margin: 100px auto;
+  color: white;
+  font-size: 20px;
+  background-color: red;
+  border: 2px solid white;
+  border-radius: 20px;
+  transition: 200ms;
+}
+.button:hover{
+  font-size: larger;
+  background-color: rgb(121, 7, 7);
+  transition: 200ms;
+}
 
-  .sidebar {
-    width: 60px;
+.hide{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+@media only screen and (min-width: 640px) and (max-width: 1100px) {
+  .sidebar{
+    width: 30vw;
   }
+  .close{
+    width: 10vw;
+  }
+  .icons{
+    width: 1.5rem;
+  }
+  .wrapperhide{
+    display: none
+  }
+  .button{
+    width: 100%;
+  }
+  .exit {
+    width: 1rem;
+  }
+}
+
+@media only screen and (max-width: 639px) {
+  .close{
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 6vh;
+    margin: 0;
+    padding: 0;
+  }
+  .ul{
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+  .link{
+    flex: 1;
+    width: 10px;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  .list{
+    width: 50px;
+    margin: 0;
+    padding: 0;
+  }
+.button{
+  flex: .5;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin: 2px 0 0 ;
+  padding: 10;
+}
+.exit{
+  margin-top: 14px;
+}
+.hide{
+  display: none;
+}
 }
