@@ -42,16 +42,16 @@ const registerApi = async(payload)=>{
     }
 }
 
-const uploadImage = async(data)=>{
-    try {
-        const response = await axios.post(`${apiUrl}/users/v1/cloudinary`,{
-            file:data
-        })
-    } catch (error) {
-        throw error
+// const uploadImage = async(data)=>{
+//     try {
+//         const response = await axios.post(`${apiUrl}/users/v1/cloudinary`,{
+//             file:data
+//         })
+//     } catch (error) {
+//         throw error
 
-    }
-}
+//     }
+// }
 const saveImage = async(data)=>{
     try {
         const response = await axios.put(`${apiUrl}/users/v1/cloudinary`,{
@@ -75,4 +75,4 @@ const getUserDetail = async()=>{
     }
 }
 
-export {loginApi,getUserDetail,uploadImage,saveImage,registerApi}
+export {loginApi,getUserDetail,saveImage,registerApi}

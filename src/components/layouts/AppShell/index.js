@@ -16,7 +16,7 @@ const AppShell = ({ children }) => {
             ) : (
                 <>
                         <Sidebar />
-                    <Col md="12" sm="12" style={{padding:"1vw 8vw 1vw"}}>{children}</Col>
+                    <Col md={{ span: 11, offset: 1 }} sm="12" style={{padding:"1vw 8vw 1vw"}}>{children}</Col>
                 </>
             )}
          {/* </Row> */}

@@ -25,7 +25,7 @@ const Sidebar = () => {
     return (
                 <div className={`${styles.sidebar} ${isHide ? '' : styles.close}`}>
                 <ul className={`${styles.ul}`}>
-                    {/* {isHide ? (
+                    {isHide ? (
                         <div className={`${styles.wrapper}`}>
                             <Link href="/">
                                 <img src="./logo.svg" className={`${styles.logo}`} />
@@ -33,11 +33,11 @@ const Sidebar = () => {
                         </div>
                     ) : (
                         <div className={`${styles.wrapperhide}`}>
-                            <Link href="/" className={style.collumn}>
+                            <Link href="/" className={styles.collumn}>
                                 <img src="./logo.svg" className={`${styles.logo}`} />
                             </Link>
                         </div>
-                    )} */}
+                    )}
                     <Link href="/dashboard" className={styles.link}>
                         <li className={styles.list}>
                             <IconContext.Provider value={{ color: "white" }}>

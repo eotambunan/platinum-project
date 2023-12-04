@@ -8,7 +8,7 @@ const Loading = () => {
     useEffect(() => {
             const timeout = setTimeout(() => {
                 setVisible(false);
-            }, 3000);
+            }, 2000);
     }, [isLoading]);
 
     return visible?(

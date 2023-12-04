@@ -2,7 +2,7 @@ import Dropzone from "react-dropzone-uploader";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 
-import { saveImage } from '@/rest_API/users_api';
+import { saveImage, uploadImage } from '@/rest_API/users_api';
 
 
 
@@ -10,12 +10,14 @@ export default function DropzoneUploader({fetchData}) {
     const [urlImage, setUrlImage] = useState(null);
 
     const getUploadParams = () => {
-        return { url: "http://localhost:3001/api/users/v1/cloudinary" };
+        return { url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/v1/cloudinary` };
     };
+    // http://api.griyadandelion.space/api/users/v1/cloudinary
 
     const handleChangeStatus = ({ meta, xhr }, status) => {
 
         if (status === "done") {
+          console.log(xhr);
             let response = JSON.parse(xhr.response);
             setUrlImage(response.url);
         }
@@ -53,7 +55,7 @@ export default function DropzoneUploader({fetchData}) {
         }}
         accept="image/*"
       />
-            {urlImage?<Button onClick={handleSubmit}>simpan perubahan</Button>:<Button onClick={handleSubmit} disabled>simpan perubahan</Button>}
+            {urlImage?<Button onClick={handleSubmit}>Save Profile Picture</Button>:<Button onClick={handleSubmit} disabled>Choose your image</Button>}
         </>
     );
 }
