@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch",
+    "test": "jest",
     "debug": "next dev --inspect"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "js-cookie": "^3.0.5",
     "next": "14.0.1",
     "next-auth": "^4.24.5",
+    "next-router-mock": "^0.9.10",
     "react": "^18",
     "react-bootstrap": "^2.9.1",
     "react-chartjs-2": "^5.2.0",
