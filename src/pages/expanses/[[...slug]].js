@@ -79,41 +79,35 @@ const expanses = () => {
     <div className={styles.pageContainer}>
       <Row>
             <Loading/>
-        <Col md="8" className="mt-4">
+        <Col lg={{ span: 8, offset:0}} className="mt-4">
           <Card className={styles.chartContainer}>
-            <Card.Body>
-              <h1 className={styles.pageTitle}>Expanse By Category</h1>
+              <h1 className={styles.pageTitle}>Expense By Category</h1>
               <TesExpanse fetchData={fetchData}>Add Expense</TesExpanse>
               <Chart
                 type={"Bar"}
                 title={"Expense"}
-                color={"#3498db"} /* Blue color */
+                color={"red"}
                 datas={chartData}
-                height={300} // Adjust the height as needed
               >
                 Expenses by category monthly
               </Chart>
-            </Card.Body>
-          </Card>
-          <Card className={styles.tableContainer}>
-            <Card.Body>
-              <h1 className={styles.pageTitle}>Recent Expanses</h1>
-              <Table datas={tableData} fetchData={fetchData} slug={query.slug} type={"expanse"}>
-                Ini adalah table history
-              </Table>
-            </Card.Body>
           </Card>
         </Col>
-        <Col md="4"className="mt-4">
+        <Col lg={{ span: 4, offset:0}} className="mt-4">
           <Card className={styles.sidebarContainer}>
-            <Card.Body>
+            {/* <Card.Body> */}
               <h1 className={styles.pageTitle}>
-                Filter Expanse Category Monthly
+                Filter Expense Category Monthly
               </h1>
               <BodyFormFilter datas={filterData} />
-            </Card.Body>
+            {/* </Card.Body> */}
           </Card>
         </Col>
+          <Card className={styles.tableContainer}>
+              <h1 className={styles.pageTitle}>Recent Expanses</h1>
+              <Table datas={tableData} fetchData={fetchData} slug={query.slug} type={"expanse"}>
+              </Table>
+          </Card>
       </Row>
     </div>
   );

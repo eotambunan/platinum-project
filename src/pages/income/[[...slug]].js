@@ -53,32 +53,21 @@ const income = () => {
       <Loading/>
         <div className={styles.pageContainer}>
       <Row>
-        <Col md="8" className="mt-4" >
+        <Col  md="8" className="mt-4" >
           <Card className={styles.chartContainer}>
-            <Card.Body>
               <h1 className={styles.pageTitle}>Income By Category</h1>
               <AddIncome fetchData={fetchData}>Add Income</AddIncome>
               <Chart
                 type={"Bar"}
                 title={"Income"}
-                color={"#3498db"} /* Blue color */
+                color={"#3498db"}
                 datas={chartData}
-                height={300} // Adjust the height as needed
               >
                 Incomes by category monthly
               </Chart>
-            </Card.Body>
-          </Card>
-          <Card className={styles.tableContainer}>
-            <Card.Body>
-              <h1 className={styles.pageTitle}>Recent Income</h1>
-              <Table datas={tableData} fetchData={fetchData} slug={query.slug}>
-                Ini adalah table history
-              </Table>
-            </Card.Body>
           </Card>
         </Col>
-        <Col md="4"className="mt-4">
+        <Col md="4" className="mt-4">
           <Card className={styles.sidebarContainer}>
             <Card.Body>
               <h1 className={styles.pageTitle}>
@@ -88,6 +77,13 @@ const income = () => {
             </Card.Body>
           </Card>
         </Col>
+          <Card className={styles.tableContainer}>
+            <Card.Body>
+              <h1 className={styles.pageTitle}>Recent Income</h1>
+              <Table datas={tableData} fetchData={fetchData} slug={query.slug} type={"income"}>
+              </Table>
+            </Card.Body>
+          </Card>
       </Row>
     </div>
       </>

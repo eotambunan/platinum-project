@@ -7,36 +7,35 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 
+import styles from './element.module.css'
+
 const EditExpanse = ({ children, id, datas, fetchData }) => {
     const [show, setShow] = useState(false);
     const [category, setCategory] = useState("");
-    const [amount, setAmount] = useState("");
+    const [amount, setAmount] = useState("250");
     const [wallet, setWallet] = useState("");
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
-
     const [currentData, setCurrentData] = useState([]);
     const [listWallet, setListWallet] = useState([]);
+    const [isFormValid,setIsFormValid] = useState(false)
+
 
     useEffect(() => {
+
         if (datas.length > 0) {
             getCurrentData();
         }
     }, [datas]);
+    useEffect(()=>{
+        formValidation()
+    },[amount,wallet,date,description])
+
 
     useEffect(() => {
         setCategory(currentData.expanses_id);
         setAmount(currentData.amount);
         setWallet(currentData.wallet_id);
-        // if (datas.length > 0) {
-        // const newDate = currentData[0].date_transaction;
-        // const parts = newDate.split("/");
-        // const formattedDate = `${parts[2]}-${parts[0].padStart(2, "0")}-${parts[1].padStart(2, "0")}`;
-        // setDate(formattedDate);
-        // console.log("ok");
-        // console.log(currentData);
-        // }
-
         setDescription(currentData.description);
     }, [currentData]);
 
@@ -50,9 +49,15 @@ const EditExpanse = ({ children, id, datas, fetchData }) => {
         setListWallet(response);
     };
 
+    const formValidation = ()=>{
+        if(category&&amount&&wallet&&date&&description){
+            setIsFormValid(true)
+        }
+    }
+
+
     const handleClick = async (event) => {
         event.preventDefault();
-        console.log("ok");
         const data = { wallet_id: wallet, expanses_id: category, amount, date_transaction: date, description };
         console.log(data);
         console.log(id);
@@ -75,10 +80,9 @@ const EditExpanse = ({ children, id, datas, fetchData }) => {
         <Row>
             <Col>
                 {/* Button for trigger Modal */}
-                {}
-                <Button variant="primary" onClick={handleShow}>
+                <button className={`${styles.editButton}`} onClick={handleShow}>
                     {children}
-                </Button>
+                </button>
                 {/* Add Expense Modal */}
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
@@ -159,8 +163,8 @@ const EditExpanse = ({ children, id, datas, fetchData }) => {
                                 />
                             </Form.Group>
                             <div className="d-flex justify-content-end flex-column">
-                                <Button variant="primary" className="" type="submit" onClick={(event) => handleClick(event)}>
-                                    Add Expense
+                            <Button variant="primary" className="" type="submit" onClick={(event) => handleClick(event)} disabled={isFormValid?false:true}>
+                                    Save Change
                                 </Button>
                             </div>
                         </Form>

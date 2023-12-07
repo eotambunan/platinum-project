@@ -4,6 +4,7 @@ import { fetchData } from "next-auth/client/_utils";
 
 import { useState } from "react";
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
+import styles from "./element.module.css"
 
 const AddIncome = ({children,id, fetchData}) => {
   const [show, setShow] = useState(false);
@@ -42,9 +43,9 @@ const AddIncome = ({children,id, fetchData}) => {
       <Col>
         {/* Button for trigger Modal */}
         {}
-        <Button variant="primary" onClick={handleShow}>
+        <button className={`${styles.addButton}`} onClick={handleShow}>
           {children}
-        </Button>
+        </button>
         {/* Add Expense Modal */}
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>

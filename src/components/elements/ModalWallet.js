@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 import { createWallet } from "@/rest_API/wallets_api"; // Import your API function for creating wallets
+import styles from "./element.module.css"
 
 const WalletForm = ({ fetchData }) => {
   const [show, setShow] = useState(false);
@@ -43,9 +44,9 @@ const WalletForm = ({ fetchData }) => {
     <Row>
       <Col>
         {/* Button for trigger Modal */}
-        <Button variant="primary" onClick={handleShow}>
+        <button className={`${styles.addButton}`} onClick={handleShow}>
           Add Wallet
-        </Button>
+        </button>
         {/* Add Expense Modal */}
         <Modal show={show} onHide={handleClose}>
           <Modal.Header>

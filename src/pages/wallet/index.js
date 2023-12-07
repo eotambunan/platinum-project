@@ -42,15 +42,6 @@ const Wallet = () => {
     <Loading/>
     <Row>
       <Col>
-        {/* {loading ? (
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        ) : error ? (
-          <Alert variant="danger">{error}</Alert>
-        ) : wallets && wallets.length === 0 ? (
-          <p>No wallet data available.</p>
-        ) : ( */}
           <Row xs={1} md={2} lg={3} className="g-4 mt-1">
             {wallets.length > 0 ? (
               wallets.map((wallet) => (
@@ -78,7 +69,7 @@ const Wallet = () => {
               <Card.Body>
                 <h1>Saldo Monthly</h1>
                 <ModalWallet fetchData={fetchData}></ModalWallet>
-                <div style={{ width: "80%", height: "80%" }}>
+                <div>
                   <Chart
                     type={"Line"}
                     datas={chartData}

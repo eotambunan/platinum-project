@@ -53,7 +53,9 @@ const login = () => {
         if (response.status==201) {
           alert("berhasil mendaftar. silahkan log-in")
           setIsChecked(false)   
+          setName('')       
           setPassword('')       
+          setConfirmPassword('')       
         } else{throw error}
       } catch (error) {
         setErrMessage("Email has already been registered")

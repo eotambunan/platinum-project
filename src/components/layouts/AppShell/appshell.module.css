@@ -1,0 +1,24 @@
+.container{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+.sideBar{
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background-color: purple;
+    z-index: 200;
+    left: 0;
+    
+}
+
+.row{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
+.col{
+    margin-bottom: 10vh;
+}

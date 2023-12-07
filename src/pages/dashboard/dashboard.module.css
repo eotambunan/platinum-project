@@ -1,21 +1,18 @@
-.page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.pageContainer {
     padding: 20px;
   }
   
-  .chart-container {
-    max-width: 200px;
-    width: 50%;
+  .chartCard {
+    width: 100%;
+    background-color: #ecf0f1;
+    padding: 20px;
+    border: 2px solid black;
     margin-bottom: 20px;
   }
   
-  .chart-title {
+  .chartTitle{
     text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: black;
   }
-  .chartCard {
-    margin-top: 20px;}

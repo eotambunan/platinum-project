@@ -5,6 +5,8 @@ import { getUserDetail } from "@/rest_API/users_api";
 import { Col, Row, Card } from "react-bootstrap";
 import Loading from "@/components/layouts/loading/Loading";
 
+import styles from "./profile.module.css"
+
 const Profile = () => {
     const [userDetail, setUserDetail] = useState([]);
     useEffect(() => {
@@ -21,14 +23,17 @@ const Profile = () => {
             <Loading />
             <div className="container mt-5">
                 <Row>
+                    <Col md={5}>
+                        <Card className="p-4 card">{userDetail.user_image ? <img src={userDetail.user_image} className={`${styles.userImage}`} alt="User" /> : <h1 className="no-photo-text">No photo available</h1>}</Card>
+                    </Col>
                     <Col md={7}>
                         <Card className="mb-4 p-4 card">
-                            <h1 className="mb-4 card-title">Profile Page</h1>
+                            <h1 className={`${styles.cardTitle}`}>Profile Page</h1>
 
                             <div className="mb-4 profile-info">
-                                <h3>Name</h3>
+                                <h3 className={styles.profileInfoH3}>Name</h3>
                                 <p>{userDetail.name}</p>
-                                <h3>Email</h3>
+                                <h3 className={styles.profileInfoH3}>Email</h3>
                                 <p>{userDetail.email}</p>
                             </div>
 
@@ -37,9 +42,6 @@ const Profile = () => {
                         </Card>
                     </Col>
 
-                    <Col md={5}>
-                        <Card className="p-4 card">{userDetail.user_image ? <img src={userDetail.user_image} className="img-fluid user-image" alt="User" /> : <h1 className="no-photo-text">No photo available</h1>}</Card>
-                    </Col>
                 </Row>
             </div>
         </>

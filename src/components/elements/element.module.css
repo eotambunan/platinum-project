@@ -4,7 +4,6 @@
   flex-direction: row;
   padding: 0;
   margin: 0;
-  /* background-color: red; */
 }
 
 .summary {
@@ -19,9 +18,7 @@
   border: 1px solid black;
 }
 
-.summary p {
-  margin: 0;
-}
+
 
 .summary h3 {
   font-size: 1  rem;
@@ -30,6 +27,20 @@
 
 .summary ul {
   margin: 0;
+}
+.addButton{
+  background-color: aqua;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 1rem;
+  transition: 200ms;
+  color: black;
+  border: 2px solid black;
+  margin-left: 10px;
+}
+
+.addButton:hover{
+  background-color: rgb(4, 218, 218);
 }
 
 .filterButton {
@@ -40,11 +51,39 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 10px;
+  width: 80%;
+  margin: auto;
 }
 
 .filterButton:hover {
   background-color: #2980b9; /* Darker blue color on hover */
 }
+
+.editButton{
+  background-color: greenyellow;
+  border-radius: 10px;
+  padding: 2px;
+  font-size: 1rem;
+  transition: 200ms;
+  color: black;
+  border: 2px solid black;
+}
+.editButton:hover{
+  background-color: rgb(123, 190, 22);
+}
+.deleteButton{
+  background-color: rgb(248, 84, 84);
+  border-radius: 10px;
+  padding: 2px;
+  color: white;
+  margin-left: 2px;
+  transition: 200ms;
+}
+.deleteButton:hover{
+  background-color: rgb(182, 42, 42);
+}
+
 
 .wallet-summary-content {
   display: flex;
@@ -56,4 +95,37 @@
 .icon {
   margin-right: 20px; /* Add spacing between the icon and the value */
   font-size: 2rem; /* Set the desired font size */
+}
+.chart{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tableContainer{
+  width: 100%;
+  height: 40vh;
+  overflow: auto;
+}
+.tdAction{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  background-color: red;
+}
+
+/* .td{
+  font-size: 1px;
+} */
+@media only screen and (max-width: 700px) {
+  .td{
+    font-size: .8rem;
+  }
+  .editButton{
+    font-size: .7rem;
+  }
+  .deleteButton{
+    font-size: .7rem;
+  }
+  
 }

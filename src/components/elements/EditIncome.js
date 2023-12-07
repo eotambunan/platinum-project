@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 
+import styles from './element.module.css'
+
 const EditIncome = ({ children, id, datas, fetchData }) => {
     const [show, setShow] = useState(false);
     const [category, setCategory] = useState("");
@@ -13,9 +15,9 @@ const EditIncome = ({ children, id, datas, fetchData }) => {
     const [wallet, setWallet] = useState("");
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
-
     const [currentData, setCurrentData] = useState([]);
     const [listWallet, setListWallet] = useState([]);
+    const [isFormValid,setIsFormValid] = useState(false)
     useEffect(() => {
         if (datas.length > 0) {
             getCurrentData();
@@ -26,17 +28,11 @@ const EditIncome = ({ children, id, datas, fetchData }) => {
         setCategory(currentData.income_id);
         setAmount(currentData.amount);
         setWallet(currentData.wallet_id);
-        // if (datas.length > 0) {
-        // const newDate = currentData[0].date_transaction;
-        // const parts = newDate.split("/");
-        // const formattedDate = `${parts[2]}-${parts[0].padStart(2, "0")}-${parts[1].padStart(2, "0")}`;
-        // setDate(formattedDate);
-        // console.log("ok");
-        // console.log(currentData);
-        // }
-
         setDescription(currentData.description);
     }, [currentData]);
+    useEffect(()=>{
+        formValidation()
+    },[amount,wallet,date,description])
 
     const getCurrentData = () => {
         const [incomingData] = datas;
@@ -47,6 +43,12 @@ const EditIncome = ({ children, id, datas, fetchData }) => {
         const response = await getWallet();
         setListWallet(response);
     };
+
+    const formValidation = ()=>{
+        if(category&&amount&&wallet&&date&&description){
+            setIsFormValid(true)
+        }
+    }
 
     const handleClick = async (event) => {
         event.preventDefault();
@@ -70,11 +72,10 @@ const EditIncome = ({ children, id, datas, fetchData }) => {
         <Row>
             <Col>
                 {/* Button for trigger Modal */}
-                {}
-                <Button variant="primary" onClick={handleShow}>
+                <Button className={`${styles.editButton}`} onClick={handleShow}>
                     {children}
                 </Button>
-                {/* Add Expense Modal */}
+                {/* Add Income Modal */}
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Edit Expanse</Modal.Title>
@@ -149,8 +150,8 @@ const EditIncome = ({ children, id, datas, fetchData }) => {
                                 />
                             </Form.Group>
                             <div className="d-flex justify-content-end flex-column">
-                                <Button variant="primary" className="" type="submit" onClick={(event) => handleClick(event)}>
-                                    Add Expense
+                                <Button variant="primary" className="" type="submit" onClick={(event) => handleClick(event)} disabled={isFormValid?false:true}>
+                                    Save Change
                                 </Button>
                             </div>
                         </Form>

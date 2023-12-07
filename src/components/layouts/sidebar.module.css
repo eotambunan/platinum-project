@@ -7,6 +7,7 @@
   background-color: rgb(41, 155, 99);
   transition: 200ms;
   z-index: 10;
+  left: 0;
 }
 .close {
   width: 5vw;
@@ -111,12 +112,12 @@
   height: 30px;
 }
 
-@media only screen and (min-width: 640px) and (max-width: 1100px) {
+@media only screen and (min-width: 768px) and (max-width: 1100px) {
   .sidebar{
     width: 30vw;
   }
   .close{
-    width: 10vw;
+    width: 6vw;
   }
   .icons{
     width: 1.5rem;
@@ -132,7 +133,7 @@
   }
 }
 
-@media only screen and (max-width: 639px) {
+@media only screen and (max-width: 767px) {
   .close{
     position: fixed;
     bottom: 0;
@@ -173,6 +174,9 @@
   margin-top: 14px;
 }
 .hide{
+  display: none;
+}
+.wrapperhide{
   display: none;
 }
 }

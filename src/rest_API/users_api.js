@@ -28,14 +28,12 @@ const loginApi = async(payload)=>{
 
 const registerApi = async(payload)=>{
     try {
-        console.log(payload);
         const response = await axios.post(`${apiUrl}/users/v1/regis`,{
             name : payload.name,
             email : payload.email,
             password : payload.password,
             role : "none"
         })
-        console.log(response);
         return response
     } catch (error) {
         throw error

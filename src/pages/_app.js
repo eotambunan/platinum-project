@@ -4,6 +4,7 @@ import GlobalContext from "@/context/GlobalContext";
 import { getCookie } from "@/utils/cookies";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
+import '@/styles/globals.css'
 
 export default function App({ Component, pageProps }) {
     const [isLogin, setIsLogin] = useState(false);

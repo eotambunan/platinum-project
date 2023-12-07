@@ -60,15 +60,15 @@ const dashboard = () => {
         <>
             <Loading />
             <div className={styles.pageContainer}>
-                <Row>
-                    <Col md="6">
+                <Row >
+                    <Col  md={{ span: 11, offset:1}} lg={{ span: 6, offset:0}} >
                         <Card className={styles.chartCard}>
                             <Card.Body>
                                 <h1 className={styles.chartTitle}>Monthly Expense</h1>
                                 <Chart
                                     type={"Bar"}
                                     title={"Expense"}
-                                    color={"#FF6384"}
+                                    color={"red"}
                                     datas={chartExpanse}
                                     height={200} // Adjust the height as needed
                                 >
@@ -77,14 +77,14 @@ const dashboard = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col md="6">
+                    <Col md={{ span: 11, offset:1}} lg={{ span: 6, offset:0}}>
                         <Card className={styles.chartCard}>
                             <Card.Body>
                                 <h1 className={styles.chartTitle}>Monthly Income</h1>
                                 <Chart
                                     type={"Bar"}
                                     title={"Income"}
-                                    color={"#4CAF50"}
+                                    color={"#3498db"}
                                     datas={chartIncome}
                                     height={200} // Adjust the height as needed
                                 >

@@ -42,12 +42,12 @@ const Chart = ({ type, title, color, datas }) => {
         plugin: {
             legend: true,
         },
-        scales: {
-            y: {
-                min: Math.min(...value) * 0.9,
-                max: Math.max(...value),
-            },
-        },
+        // scales: {
+        //     y: {
+        //         min: Math.min(...value) * 0.9,
+        //         max: Math.max(...value),
+        //     },
+        // },
     };
     return (
         <>

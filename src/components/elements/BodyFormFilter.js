@@ -32,7 +32,7 @@ const BodyFormFilter = ({ datas }) => {
 
 
     return (
-        <Row>
+        <Row className={`${styles.container}`}>
             <Col>
                 <div className="input-group mb-3">
                     <Form.Select className="form-select" id="inputGroupSelect01" value={selectedMonth} onChange={handleSelectedMonthChange}>
@@ -62,15 +62,19 @@ const BodyFormFilter = ({ datas }) => {
                     <option value="2021">2021</option>
                     <option value="2022">2022</option>
                     <option value="2023">2023</option>
+                    <option value="2024">2024</option>
                 </Form.Select>
             </Col>
             <button className={styles.filterButton} onClick={handleClick}>Apply Filter</button>
-            <div className="mt-3">
-                {!chartFilterData||chartFilterData.length==0 && <h1>data tidak ada</h1>}
-                {chartFilterData && (
+            <div className={`${styles.chart}`}>
+                {!chartFilterData||chartFilterData.length==0 && <h1>Transaction Not Found</h1>}
+                {chartFilterData&&chartFilterData.length!==0 && (
+                    <>
                     <Chart type={"Pie"} datas={chartFilterData} title={"Expenses"} color={"red"}>
                         Expenses by category monthly
                     </Chart>
+                    
+                    </>
                 )}
             </div>
         </Row>
