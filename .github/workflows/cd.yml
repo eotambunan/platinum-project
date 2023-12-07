@@ -19,11 +19,11 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /var/www/api.griyadandelion.space
+            cd /var/www/griyadandelion.space
             git pull origin main
             git status
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
             npm install 
-            pm2 stop api.griyadandelion.space
-            pm2 restart api.griyadandelion.space
+            pm2 stop griyadandelion.space
+            pm2 restart griyadandelion.space
