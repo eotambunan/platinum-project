@@ -8,6 +8,7 @@ on:
 jobs:
   cd:
     runs-on: ubuntu-latest
+    need: ci
 
     steps:
       - uses: actions/checkout@v4.1.1
