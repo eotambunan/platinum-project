@@ -53,7 +53,7 @@ const income = () => {
       <Loading/>
         <div className={styles.pageContainer}>
       <Row>
-        <Col  md="8" className="mt-4" >
+        <Col  lg={{ span: 8, offset:0}} className="mt-4" >
           <Card className={styles.chartContainer}>
               <h1 className={styles.pageTitle}>Income By Category</h1>
               <AddIncome fetchData={fetchData}>Add Income</AddIncome>
@@ -67,14 +67,12 @@ const income = () => {
               </Chart>
           </Card>
         </Col>
-        <Col md="4" className="mt-4">
+        <Col lg={{ span: 4, offset:0}} className="mt-4">
           <Card className={styles.sidebarContainer}>
-            <Card.Body>
               <h1 className={styles.pageTitle}>
                 Filter Income Category Monthly
               </h1>
               <BodyFormFilter datas={filterData} />
-            </Card.Body>
           </Card>
         </Col>
           <Card className={styles.tableContainer}>

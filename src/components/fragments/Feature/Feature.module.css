@@ -3,18 +3,26 @@
     align-items: flex-start;
     margin: 30px;
 }
+.imageContainer{
+    text-align: center;
+}
 
 .featureImage {
-    width: 400px;
-    height: 300px;
+    width: 100%;
+    height: auto;
     margin-right: 20px;
     border-radius: 2rem;
     border-width: 9px;
     border-style: groove;
     border-color: rgb(24, 170, 97);
-    
 }
-
+.secondCol{
+    display: flex;
+    justify-content: center;
+}
+.textContainer{
+    width: 100%;
+}
 .featureTitle {
     font-size: 2rem;
     
@@ -23,3 +31,18 @@
 .featureDesc {
     font-size: 1.5rem;
 }
+
+@media only screen and (max-width:767px) {
+    .featureImage{
+        width: 50%;
+    }
+    .textContainer{
+        width: 80%;
+    }
+    .order1{
+        order: 2;
+    }
+    .order2{
+        order:1
+    }
+  }

@@ -1,16 +1,22 @@
-import { Image } from "react-bootstrap";
+import { Col, Image, Row } from "react-bootstrap";
 import styles from "./Feature.module.css";
 
 const FeatureItemRight = ({ featureTitle, featureDesc, featureImage }) => {
-  return (
-    <section className={styles.featureItem}>
-      <div className="feature-desc">
-        <h2 className={styles.featureTitle}>{featureTitle}</h2>
-        <p className={styles.featureDesc}>{featureDesc}</p>
-      </div>
-      <Image src={featureImage} className={styles.featureImage} />
-    </section>
-  );
+    return (
+        <Row>
+            <Col lg={{ span: 6, offset: 1 }} md={{ span: 8, offset: 0 }} sm={{ span: 12, offset: 0 }} className={`${styles.secondCol} ${styles.order1}`}>
+                <div className={`${styles.textContainer}`}>
+                    <h2 className={styles.featureTitle}>{featureTitle}</h2>
+                    <p className={styles.featureDesc}>{featureDesc}</p>
+                </div>
+            </Col>
+            <Col lg={{ span: 4, offset: 0 }} md={{ span: 4, offset: 0 }} sm={{ span: 12, offset: 0 }} className={`${styles.order2}`}>
+                <div className={`${styles.imageContainer}`}>
+                    <Image src={featureImage} className={styles.featureImage} />
+                </div>
+            </Col>
+        </Row>
+    );
 };
 
 export default FeatureItemRight;

@@ -78,9 +78,12 @@ const Sidebar = () => {
                             {isHide ? "Profile" : ""}
                         </li>
                     </Link>
+                    <Link href="#" className={styles.link}>
                     <button onClick={logOut} className={`${styles.button}`}>
                         {isHide ? "Log-Out" : <ImExit className={styles.exit} />}
                     </button>
+                    
+                    </Link>
                 </ul>
                 <button onClick={handleHideClick} className={`${styles.hide} position-absolute top-50 start-100 translate-middle`}>
                 {isHide ? <MdKeyboardDoubleArrowLeft /> : <MdKeyboardDoubleArrowRight />}

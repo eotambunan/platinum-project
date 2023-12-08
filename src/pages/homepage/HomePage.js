@@ -10,17 +10,15 @@ const SpacedContainer = ({ children }) => <div style={{ marginBottom: "20px" }}>
 export default function LandingPage() {
     return (
         <>
-            <main>
                 <Navbar />
-                <Container>
+                {/* <Container> */}
                     <SpacedContainer />
                     <Hero />
                     <SpacedContainer />
                     <Feature />
                     <About />
-                </Container>
+                {/* </Container> */}
                 <Footer />
-            </main>
         </>
     );
 }

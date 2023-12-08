@@ -18,8 +18,6 @@ const Navbar = () => {
         <header className={styles.header}>
             <h2 className={styles.logo}>Money Tracker</h2>
             <nav className={styles.navigation}>
-                <a href="#">HOME</a>
-                <a href="#">ABOUT</a>
 
                 {isLogin==false ? <button className={styles.btnLoginPopup}><Link href="/login">Log In</Link></button>:<button onClick={logOut} className={styles.btnLoginPopup}>Log Out</button> }
             </nav>

@@ -90,8 +90,10 @@
 
 .button{
   width: 80%;
-  height: 50px;
-  display: block;
+  /* height: 50px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 100px auto;
   color: white;
   font-size: 20px;
@@ -99,6 +101,8 @@
   border: 2px solid white;
   border-radius: 20px;
   transition: 200ms;
+  width: 10rem;
+  height: 50px;
 }
 .button:hover{
   font-size: larger;
@@ -138,7 +142,7 @@
     position: fixed;
     bottom: 0;
     width: 100vw;
-    height: 6vh;
+    height: 50px;
     margin: 0;
     padding: 0;
   }
@@ -167,11 +171,8 @@
   width: 50%;
   display: flex;
   justify-content: center;
-  margin: 2px 0 0 ;
-  padding: 10;
-}
-.exit{
-  margin-top: 14px;
+  align-items: center;
+  height: 80%;
 }
 .hide{
   display: none;

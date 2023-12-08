@@ -1,13 +1,25 @@
 /* HeroSection.module.css */
+.wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
 .hero {
     padding: 200px 0;
     text-align: center;
-    background-size: 120%;
     background-image:url("https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") ;
     background-color: #299b63;
+    background-size: cover;
+    background-repeat: no-repeat;
     color: #ecf0f1;
     background-blend-mode: multiply;
-    width: 100%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
   }
   
   .container {
@@ -24,3 +36,9 @@
     font-size: 1.2em;
   }
   
+
+  @media only screen and (max-width:800px) {
+    .hero{
+      width: 100%
+    }
+  }

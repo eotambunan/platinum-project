@@ -95,12 +95,10 @@ const expanses = () => {
         </Col>
         <Col lg={{ span: 4, offset:0}} className="mt-4">
           <Card className={styles.sidebarContainer}>
-            {/* <Card.Body> */}
               <h1 className={styles.pageTitle}>
                 Filter Expense Category Monthly
               </h1>
               <BodyFormFilter datas={filterData} />
-            {/* </Card.Body> */}
           </Card>
         </Col>
           <Card className={styles.tableContainer}>

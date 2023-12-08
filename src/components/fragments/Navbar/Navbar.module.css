@@ -11,31 +11,31 @@
     justify-content: space-between;
     align-items: center;
     z-index: 99;
-  }
-  
-  .logo {
+}
+
+.logo {
     font-size: 2em;
     color: #fff;
     user-select: none;
-  }
-  
-  .navigation {
+}
+
+.navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .navigation a {
+}
+
+.navigation a {
     position: relative;
     font-size: 1.1em;
     color: #fff;
     text-decoration: none;
     font-weight: 500;
     margin-left: 40px;
-  }
-  
-  .navigation a::after {
-    content: '';
+}
+
+.navigation a::after {
+    content: "";
     position: absolute;
     left: 0;
     bottom: -6px;
@@ -46,14 +46,14 @@
     transform-origin: right;
     transform: scaleX(0);
     transition: transform 0.5s;
-  }
-  
-  .navigation a:hover::after {
+}
+
+.navigation a:hover::after {
     transform-origin: left;
     transform: scaleX(1);
-  }
-  
-  .btnLoginPopup {
+}
+
+.btnLoginPopup {
     width: 130px;
     height: 50px;
     background: transparent;
@@ -66,10 +66,25 @@
     font-weight: 500;
     margin-left: 40px;
     transition: 0.5s;
-  }
-  
-  .btnLoginPopup:hover {
+}
+
+.btnLoginPopup:hover {
     background: #fff;
     color: #162938;
+}
+
+@media only screen and (max-width:600px) {
+  .header{
+    padding: 20px 50px;
+    height: 10vh;
   }
-  
+  .hide{
+    display: none;
+  }
+  .logo{
+    font-size: 1.5rem;
+  }
+  .btnLoginPopup{
+    width: 20vw;
+  }
+}
