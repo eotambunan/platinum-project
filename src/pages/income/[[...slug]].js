@@ -8,17 +8,28 @@ import { useRouter } from "next/router";
 import AddIncome from "@/components/elements/AddIncome";
 import Loading from "@/components/layouts/loading/Loading";
 import styles from "./income.module.css";
+import { checkAuth } from "@/utils/checkAuth";
 
 const income = () => {
     const [chartData, setChartData] = useState([]);
     const [tableData, setTableData] = useState([]);
     const [filterData, setFilterData] = useState([]);
 
+    const router = useRouter()
+
+
     useEffect(() => {
+      authenticated();
         fetchData();
     }, []);
-    useEffect(() => {
-    }, []);
+
+    const authenticated = ()=>{
+      const isAuthenticated = checkAuth()
+      if(!isAuthenticated){
+          router.push('/login')
+      }
+  }
+  
 
     const fetchData = async () => {
         try {

@@ -8,6 +8,8 @@ import ModalWallet from "@/components/elements/ModalWallet";
 import Chart from "@/components/elements/Chart";
 import Loading from "@/components/layouts/loading/Loading";
 import styles from "./wallet.module.css";
+import { checkAuth } from "@/utils/checkAuth";
+import { useRouter } from "next/router";
 const Wallet = () => {
   const [wallets, setWallets] = useState([]);
   const [monthlySaldoData, setMonthlySaldoData] = useState([]);
@@ -15,9 +17,21 @@ const Wallet = () => {
   const [error, setError] = useState(null);
   const [chartData, setChartData] = useState([]);
 
+  const router = useRouter()
+
+
   useEffect(() => {
+    authenticated()
     fetchData();
   }, []);
+
+  const authenticated = ()=>{
+    const isAuthenticated = checkAuth()
+    if(!isAuthenticated){
+        router.push('/login')
+    }
+}
+
   const fetchData = async () => {
     try {
       const walletResponse = await getWalletSaldo();
@@ -43,7 +57,7 @@ const Wallet = () => {
     <Row>
       <Col>
           <Row xs={1} md={2} lg={3} className="g-4 mt-1">
-            {wallets.length > 0 ? (
+            {wallets?.length > 0 ? (
               wallets.map((wallet) => (
                 <Col key={wallet.id}>
                 <Card className={styles.card}>

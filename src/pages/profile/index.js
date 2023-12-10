@@ -6,12 +6,18 @@ import { Col, Row, Card } from "react-bootstrap";
 import Loading from "@/components/layouts/loading/Loading";
 
 import styles from "./profile.module.css"
+import { useRouter } from "next/router";
 
 const Profile = () => {
     const [userDetail, setUserDetail] = useState([]);
+
+
+
     useEffect(() => {
-        fetchData();
+            fetchData();
     }, []);
+
+
 
     const fetchData = async () => {
         const response = await getUserDetail();

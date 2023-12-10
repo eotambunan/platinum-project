@@ -8,15 +8,27 @@ import Table from "@/components/elements/Table";
 import { useRouter } from "next/router";
 import Loading from "@/components/layouts/loading/Loading";
 import styles from "./expanse.module.css";
+import { checkAuth } from "@/utils/checkAuth";
 
 const expanses = () => {
   const [chartData, setChartData] = useState([]);
   const [tableData, setTableData] = useState([]);
   const [filterData, setFilterData] = useState([]);
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+  const router = useRouter()
+
+  
+  
+  useEffect(() => {
+    authenticated()
+    fetchData();
+  }, []);
+  const authenticated = ()=>{
+    const isAuthenticated = checkAuth()
+    if(!isAuthenticated){
+        router.push('/login')
+    }
+}
 
   const fetchData = async () => {
     try {

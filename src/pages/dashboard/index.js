@@ -27,7 +27,6 @@ const dashboard = () => {
         if(!isAuthenticated){
             router.push('/login')
         }
-
     }
     const fetchData = async () => {
         try {
