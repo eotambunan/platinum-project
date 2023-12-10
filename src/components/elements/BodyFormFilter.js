@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Chart from "./Chart";
-import styles from "./element.module.css"
+import styles from "./element.module.css";
 
 const { Row, Col, Form } = require("react-bootstrap");
 
@@ -8,7 +8,7 @@ const BodyFormFilter = ({ datas }) => {
     const [selectedMonth, setSelectedMonth] = useState("");
     const [selectedYear, setSelectedYear] = useState("");
     const [chartFilterData, setChartFilterData] = useState([]);
-    
+
 
     const handleSelectedMonthChange = (event) => {
         setSelectedMonth(event.target.value);
@@ -17,25 +17,18 @@ const BodyFormFilter = ({ datas }) => {
         setSelectedYear(event.target.value);
     };
     const handleClick = () => {
-        updateData(datas)
+        updateData(datas);
     };
-    useEffect(()=>{
-        if(datas){updateData(datas)}
-    },[datas])
-    
-    const updateData = (datas)=>{
-        const filteredData = datas.filter((item) => item.month == selectedMonth && item.year == selectedYear).map(item=>{
-            console.log(item);
-            return(
-                item
-            )
-        });
-        console.log(filteredData);
-        setChartFilterData(filteredData);
-        console.log(chartFilterData);
-        console.log("ok");
-    }
+    useEffect(() => {
+        if (datas) {
+            updateData(datas);
+        }
+    }, [datas]);
 
+    const updateData = (datas) => {
+        const filteredData = datas.filter((item)=>item.month===selectedMonth && item.year===selectedYear)
+        setChartFilterData(filteredData)
+    };
 
     return (
         <Row className={`${styles.container}`}>
@@ -71,14 +64,16 @@ const BodyFormFilter = ({ datas }) => {
                     <option value="2024">2024</option>
                 </Form.Select>
             </Col>
-            <button className={styles.filterButton} onClick={handleClick} onTouchEnd={handleClick} >Apply Filter</button>
+            <button className={styles.filterButton} onClick={handleClick} onTouchEnd={handleClick}>
+                Apply Filter
+            </button>
             <div className={`${styles.chart}`}>
-                {!chartFilterData||chartFilterData.length==0 && <h1>Transaction Not Found</h1>}
-                {chartFilterData&&chartFilterData.length!==0 && (
+                {!chartFilterData || (chartFilterData.length == 0 && <h1>Transaction Not Found</h1>)}
+                {chartFilterData && chartFilterData.length !== 0 && (
                     <>
-                    <Chart type={"Pie"} datas={chartFilterData} title={"Expenses"} color={"red"}>
-                        Expenses by category monthly
-                    </Chart>
+                        <Chart type={"Pie"} datas={chartFilterData} title={"Expenses"} color={"red"}>
+                            Expenses by category monthly
+                        </Chart>
                     </>
                 )}
             </div>

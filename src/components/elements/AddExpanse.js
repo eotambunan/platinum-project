@@ -19,6 +19,7 @@ const TesExpanse = ({children,id, fetchData}) => {
   const handleClick = async (event)=>{
     event.preventDefault()
     const data = {wallet_id:wallet,expanses_id:category,amount,date_transaction: date,description}
+    console.log(data);
     const response = await addExpanse(data)
     setWallet('');
     setCategory('');
