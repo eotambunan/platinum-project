@@ -77,7 +77,6 @@ const expanses = () => {
                 const year = date_transaction.split("/")[2];
                 return { ...rest, month, year };
             });
-            console.log(newData);
             setFilterData(newData);
         } catch (error) {
             console.error(error);
