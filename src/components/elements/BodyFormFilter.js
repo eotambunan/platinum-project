@@ -24,7 +24,12 @@ const BodyFormFilter = ({ datas }) => {
     },[datas])
     
     const updateData = (datas)=>{
-        const filteredData = datas.filter((item) => item.month == selectedMonth && item.year == selectedYear).map(item=>item);
+        const filteredData = datas.filter((item) => item.month == selectedMonth && item.year == selectedYear).map(item=>{
+            console.log(item);
+            return(
+                item
+            )
+        });
         console.log(filteredData);
         setChartFilterData(filteredData);
     }
