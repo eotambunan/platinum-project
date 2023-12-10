@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import Button from "./Button";
-import Graphic from "../fragments/Graphic";
 import Chart from "./Chart";
 import styles from "./element.module.css"
 
@@ -19,7 +17,6 @@ const BodyFormFilter = ({ datas }) => {
     };
     const handleClick = () => {
         updateData()
-        console.log(datas);
     };
     useEffect(()=>{
         updateData()
@@ -70,10 +67,10 @@ const BodyFormFilter = ({ datas }) => {
                 {!chartFilterData||chartFilterData.length==0 && <h1>Transaction Not Found</h1>}
                 {chartFilterData&&chartFilterData.length!==0 && (
                     <>
+                    <h1>ada</h1>
                     <Chart type={"Pie"} datas={chartFilterData} title={"Expenses"} color={"red"}>
                         Expenses by category monthly
                     </Chart>
-                    
                     </>
                 )}
             </div>
