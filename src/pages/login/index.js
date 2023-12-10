@@ -26,6 +26,7 @@ const login = () => {
             })
             router.push('/dashboard').then(() => router.reload());
         } catch (error) {
+          console.log(error);
           if (error.response.status===401) {
             setErrMessage("Wrong Email/Password")
             setIsError(true)

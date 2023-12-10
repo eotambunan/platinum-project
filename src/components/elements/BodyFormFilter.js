@@ -7,7 +7,8 @@ const { Row, Col, Form } = require("react-bootstrap");
 const BodyFormFilter = ({ datas }) => {
     const [selectedMonth, setSelectedMonth] = useState("");
     const [selectedYear, setSelectedYear] = useState("");
-    const [chartFilterData, setChartFilterData] = useState(null);
+    const [chartFilterData, setChartFilterData] = useState([]);
+    
 
     const handleSelectedMonthChange = (event) => {
         setSelectedMonth(event.target.value);
@@ -16,14 +17,15 @@ const BodyFormFilter = ({ datas }) => {
         setSelectedYear(event.target.value);
     };
     const handleClick = () => {
-        updateData()
+        updateData(datas)
     };
     useEffect(()=>{
-        updateData()
+        if(datas){updateData(datas)}
     },[datas])
     
-    const updateData = ()=>{        
-        const filteredData = datas.filter((item) => item.month === selectedMonth && item.year === selectedYear);
+    const updateData = (datas)=>{
+        const filteredData = datas.filter((item) => item.month == selectedMonth && item.year == selectedYear).map(item=>item);
+        console.log(filteredData);
         setChartFilterData(filteredData);
     }
 
@@ -67,7 +69,6 @@ const BodyFormFilter = ({ datas }) => {
                 {!chartFilterData||chartFilterData.length==0 && <h1>Transaction Not Found</h1>}
                 {chartFilterData&&chartFilterData.length!==0 && (
                     <>
-                    <h1>ada</h1>
                     <Chart type={"Pie"} datas={chartFilterData} title={"Expenses"} color={"red"}>
                         Expenses by category monthly
                     </Chart>
