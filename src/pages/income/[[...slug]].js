@@ -40,15 +40,39 @@ const income = () => {
             setChartData(filteredDatasForChart);
 
             // data for table
-            const filteredDatasForTable = response.map(({ user_id, createdAt, updatedAt, date_transaction, ...rest }) => ({ ...rest, date_transaction: new Date(date_transaction).toLocaleDateString() }));
-            setTableData(filteredDatasForTable);
+            const filteredDatasForTable = response.map(({ user_id, createdAt, updatedAt, date_transaction, ...rest }) => {
+              const formatedDate = new Date(date_transaction);
+              const day = formatedDate.getDate();
+              const month = formatedDate.getMonth() + 1;
+              const year = formatedDate.getFullYear();
+              const fixDate = `${day.toString().padStart(2, "0")}/${month.toString().padStart(2, "0")}/${year}`;
+              return {
+                  ...rest,
+                  date_transaction: fixDate,
+              };
+          });
+          setTableData(filteredDatasForTable);
 
             // data for filter
             const filteredDatasForFilterFirst = response
-                .map(({ user_id, createdAt, updatedAt, date_transaction, wallet_id, description, id, ...rest }) => ({ ...rest, date_transaction: new Date(date_transaction).toLocaleDateString() }))
-                .map(({ income_id, amount, ...rest }) => ({ category: income_id, value: amount, ...rest }));
+                .map(({ user_id, createdAt, updatedAt, date_transaction, wallet_id, description, id, ...rest }) => {
+                    const formatedDate = new Date(date_transaction);
+                    const day = formatedDate.getDate();
+                    const month = formatedDate.getMonth() + 1;
+                    const year = formatedDate.getFullYear();
+                    const fixDate = `${day.toString().padStart(2, "0")}/${month.toString().padStart(2, "0")}/${year}`;
+                    return {
+                        ...rest,
+                        date_transaction: fixDate,
+                    };
+                })
+                .map(({ income_id, amount, ...rest }) => ({
+                    category: income_id,
+                    value: amount,
+                    ...rest,
+                }));
             const newData = filteredDatasForFilterFirst.map(({ date_transaction, ...rest }) => {
-                const month = date_transaction.split("/")[0];
+                const month = date_transaction.split("/")[1];
                 const year = date_transaction.split("/")[2];
                 return { ...rest, month, year };
             });
