@@ -32,6 +32,8 @@ const BodyFormFilter = ({ datas }) => {
         });
         console.log(filteredData);
         setChartFilterData(filteredData);
+        console.log(chartFilterData);
+        console.log("ok");
     }
 
 
